@@ -6,12 +6,14 @@ import org.junit.runners.Suite;
 import net.rossmoug.cast_on.test.convert.PatternConverterTest;
 import net.rossmoug.cast_on.test.state.GaugeTest;
 import net.rossmoug.cast_on.test.state.PatternTest;
+import net.rossmoug.cast_on.test.web.oauth.RavelryOAuthServiceTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
    GaugeTest.class,
    PatternTest.class,
-   PatternConverterTest.class
+   PatternConverterTest.class,
+   RavelryOAuthServiceTest.class
 })
 /**
  * Test suite to execute all project tests.

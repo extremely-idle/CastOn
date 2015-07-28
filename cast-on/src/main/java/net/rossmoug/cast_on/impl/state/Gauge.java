@@ -1,6 +1,6 @@
 package net.rossmoug.cast_on.impl.state;
 
-import net.rossmoug.cast_on.impl.convert.excp.InvalidArgumentException;
+import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
 
 /**
  * 
@@ -19,13 +19,13 @@ public class Gauge implements IGauge {
 	 * @param rowCount
 	 * @param stitchCount
 	 * @param unit
-	 * @throws InvalidArgumentException 
+	 * @throws InvalidConversionArgumentException 
 	 */
-	public Gauge(int rowCount, int stitchCount, Unit unit) throws InvalidArgumentException{
+	public Gauge(int rowCount, int stitchCount, Unit unit) throws InvalidConversionArgumentException{
 		if (Math.signum(rowCount) != POSITIVE_VALUE || Math.signum(stitchCount) != POSITIVE_VALUE){
-			throw new InvalidArgumentException("Row and stitch count can not be zero or negative.");
+			throw new InvalidConversionArgumentException("Row and stitch count can not be zero or negative.");
 		} else if (unit == null) {
-			throw new InvalidArgumentException("Unit must be provided.");
+			throw new InvalidConversionArgumentException("Unit must be provided.");
 		}
 
 		this.rowCount = rowCount;

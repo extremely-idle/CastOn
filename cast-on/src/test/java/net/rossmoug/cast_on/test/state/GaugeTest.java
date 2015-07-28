@@ -6,14 +6,16 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import net.rossmoug.cast_on.impl.convert.excp.InvalidArgumentException;
+import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
 import net.rossmoug.cast_on.impl.state.Gauge;
 import net.rossmoug.cast_on.impl.state.IGauge;
 import net.rossmoug.cast_on.impl.state.Unit;
 
 /**
+ * Tests to ensure that the generation of Gauge objects is consistent.
  * 
- * @author Ross
+ * @author Ross Moug (ross.moug@gmail.com)
+ * @version 1.1
  * @see Gauge
  */
 public class GaugeTest {
@@ -33,32 +35,32 @@ public class GaugeTest {
 			Assert.assertEquals(1, gauge.getRowCount());
 			Assert.assertEquals(1, gauge.getStitchCount());
 			Assert.assertEquals(Unit.INCHES, gauge.getUnit());
-		} catch (InvalidArgumentException e) {
+		} catch (InvalidConversionArgumentException e) {
 			Assert.fail("Unexpected exception encountered.");
 		}
 	}
 	
-	@Test(expected=InvalidArgumentException.class)
+	@Test(expected=InvalidConversionArgumentException.class)
 	/**
 	 * 
 	 * @throws InvalidArgumentException
 	 */
-	public void invalidCountTest() throws InvalidArgumentException{
+	public void invalidCountTest() throws InvalidConversionArgumentException{
 		IGauge gauge = new Gauge(0, 0, Unit.INCHES);
 
-		thrown.expect(InvalidArgumentException.class);
+		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage("Row and stitch count can not be zero or negative.");
 	}
 
-	@Test(expected=InvalidArgumentException.class)
+	@Test(expected=InvalidConversionArgumentException.class)
 	/**
 	 * 
 	 * @throws InvalidArgumentException
 	 */
-	public void invalidUnitTest() throws InvalidArgumentException{
+	public void invalidUnitTest() throws InvalidConversionArgumentException{
 		IGauge gauge = new Gauge(0, 0, null);
 
-		thrown.expect(InvalidArgumentException.class);
+		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage("Unit must be provided.");
 	}
 }

@@ -1,8 +1,10 @@
 package net.rossmoug.cast_on.impl.convert;
 
 /**
+ * Class representing the output from the Pattern Conversion Engine
  * 
  * @author Ross Moug (ross.moug@gmail.com)
+ * @version 1.0
  */
 public class ConversionResult implements IConversionResult {
 
@@ -11,8 +13,9 @@ public class ConversionResult implements IConversionResult {
 	
 	
 	/**
+	 * The converted row count which can be used.
 	 * 
-	 * @return
+	 * @return a double value representing the converted row count
 	 */
 	public double getConvertedRowCount() {
 		return rowCount;
@@ -29,8 +32,9 @@ public class ConversionResult implements IConversionResult {
 
 	
 	/**
+	 * The converted stitch count which can be used.
 	 * 
-	 * @return
+	 * @return a double value representing the converted stitch count
 	 */
 	public double getConvertedStitchCount() {
 		return stitchCount;
@@ -39,7 +43,7 @@ public class ConversionResult implements IConversionResult {
 	
 	/**
 	 * 
-	 * @param
+	 * @param 
 	 */
 	public void setConvertedStitchCount(double convertedStitchCount) {
 		this.stitchCount = convertedStitchCount;

@@ -3,7 +3,7 @@ package net.rossmoug.cast_on.test.state;
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.rossmoug.cast_on.impl.convert.excp.InvalidArgumentException;
+import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
 import net.rossmoug.cast_on.impl.state.Gauge;
 import net.rossmoug.cast_on.impl.state.IGauge;
 import net.rossmoug.cast_on.impl.state.Pattern;
@@ -11,8 +11,10 @@ import net.rossmoug.cast_on.impl.state.IPattern;
 import net.rossmoug.cast_on.impl.state.Unit;
 
 /**
+ * Test cases to ensure that Pattern objects can be generated consistently.
  * 
- * @author Ross
+ * @author Ross Moug (ross.moug@gmail.com)
+ * @version 1.1
  * @see Pattern
  */
 public class PatternTest {
@@ -31,7 +33,7 @@ public class PatternTest {
 			Assert.assertNotNull("", pattern.getUserGauge());
 			Assert.assertNotNull("", pattern.getPatternGauge());
 			Assert.assertEquals(4, pattern.getDimension(), 0);
-		} catch (InvalidArgumentException e) {
+		} catch (InvalidConversionArgumentException e) {
 			Assert.fail("Unexpected exception encountered.");
 		}
 	}

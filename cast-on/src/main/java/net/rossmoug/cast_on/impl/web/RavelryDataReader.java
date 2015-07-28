@@ -11,8 +11,13 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 /**
+ * Class which will process data retrieved from Ravelry (www.ravelry.com) via the
+ * OAuth/HTTP requests.
  *
  * @author Ross Moug (ross.moug@gmail.com)
+ * @version 1.1
+ * @see RavelryOAuthService
+ * @see https://docs.oracle.com/javaee/7/api/javax/json/package-summary.html
  */
 public class RavelryDataReader {
 

@@ -10,7 +10,7 @@ import net.rossmoug.cast_on.impl.convert.IConversionInput;
 import net.rossmoug.cast_on.impl.convert.IConversionResult;
 import net.rossmoug.cast_on.impl.convert.IPatternConverter;
 import net.rossmoug.cast_on.impl.convert.PatternConverter;
-import net.rossmoug.cast_on.impl.convert.excp.InvalidArgumentException;
+import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
 import net.rossmoug.cast_on.impl.state.Gauge;
 import net.rossmoug.cast_on.impl.state.IGauge;
 import net.rossmoug.cast_on.impl.state.IPattern;
@@ -20,7 +20,8 @@ import net.rossmoug.cast_on.impl.state.Unit;
 /**
  * Test cases for pattern conversion.
  * 
- * @author Ross
+ * @author Ross Moug (ross.moug@gmail.com)
+ * @version 1.1
  * @see PatternConversion
  */
 public class PatternConverterTest {
@@ -49,33 +50,33 @@ public class PatternConverterTest {
 			
 			Assert.assertEquals(5.0, result.getConvertedRowCount(), 0.01);
 			Assert.assertEquals(5.0, result.getConvertedStitchCount(), 0.01);
-		} catch (InvalidArgumentException e) {
+		} catch (InvalidConversionArgumentException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test(expected=InvalidArgumentException.class)
+	@Test(expected=InvalidConversionArgumentException.class)
 	/**
 	 * Ensure that an exception is thrown when invalid arguments, negative, are provided.
 	 * 
 	 * @see InvalidArgumentException
 	 */
-	public void negativeConverterTest() throws InvalidArgumentException {
+	public void negativeConverterTest() throws InvalidConversionArgumentException {
 		IConversionInput input = new ConversionInput(-10, -10);
-		thrown.expect(InvalidArgumentException.class);
+		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage(INVALID_ARGS_EXCP_STR);
 	}
 
-	@Test(expected=InvalidArgumentException.class)
+	@Test(expected=InvalidConversionArgumentException.class)
 	/**
 	 * Ensure that an exception is thrown when invalid arguments are provided. When
 	 * the row and/or stitch counts are zero.
 	 * 
 	 * @see InvalidArgumentException
 	 */
-	public void zeroConverterTest() throws InvalidArgumentException {
+	public void zeroConverterTest() throws InvalidConversionArgumentException {
 		IConversionInput input = new ConversionInput(0, 0);
-		thrown.expect(InvalidArgumentException.class);
+		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage(INVALID_ARGS_EXCP_STR);
 	}
 }
