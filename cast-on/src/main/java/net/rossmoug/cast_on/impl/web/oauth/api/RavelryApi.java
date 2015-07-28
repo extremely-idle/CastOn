@@ -15,7 +15,7 @@ import org.scribe.oauth.OAuthService;
  */
 public class RavelryApi extends DefaultApi10a {
 
-	private static final String AUTHORISATION_URL = "https://www.ravelry.com/oauth/authorize";
+	private static final String AUTHORISATION_URL = "https://www.ravelry.com/oauth/authorize?token=%s";
 	private static final String ACCESS_TOKEN_URL  = "https://www.ravelry.com/oauth/access_token";
 	private static final String REQUEST_TOKEN_URL = "https://www.ravelry.com/oauth/request_token";
 
