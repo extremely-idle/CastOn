@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android/Cast-OnAndroid/Cast-OnAndroid.iml" filepath="$PROJECT_DIR$/android/Cast-OnAndroid/Cast-OnAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CastOn.iml" filepath="$PROJECT_DIR$/CastOn.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cast-on-core/src/main/main.iml" filepath="$PROJECT_DIR$/cast-on-core/src/main/main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cast-on-core/src/test/test.iml" filepath="$PROJECT_DIR$/cast-on-core/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
     </modules>
   </component>
 </project>
