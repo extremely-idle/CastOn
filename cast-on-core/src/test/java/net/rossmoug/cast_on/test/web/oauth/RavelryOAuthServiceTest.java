@@ -14,8 +14,6 @@ import org.scribe.model.Token;
  * @author Ross Moug (ross.moug@gmail.com)
  */
 public class RavelryOAuthServiceTest {
-
-	private static final String AUTHORISATION_URL = "https://www.ravelry.com/oauth/authorize";
 	
 	@Test
 	/**
@@ -28,7 +26,8 @@ public class RavelryOAuthServiceTest {
 		Token requestToken = service.authorise();
 		
 		Assert.assertNotNull("Request token is not null", requestToken);
-		Assert.assertEquals(api.getAuthorizationUrl(requestToken), AUTHORISATION_URL + requestToken.getToken());
+		Assert.assertEquals(api.getAuthorizationUrl(requestToken), RavelryApi.AUTHORISATION_URL + requestToken.getToken());
+		
 	}
 	
 }
