@@ -6,9 +6,9 @@ import org.junit.Test;
 import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
 import net.rossmoug.cast_on.impl.state.Gauge;
 import net.rossmoug.cast_on.impl.state.IGauge;
-import net.rossmoug.cast_on.impl.state.Pattern;
-import net.rossmoug.cast_on.impl.state.IPattern;
 import net.rossmoug.cast_on.impl.state.Unit;
+import net.rossmoug.cast_on.impl.state.pattern.IPattern;
+import net.rossmoug.cast_on.impl.state.pattern.Pattern;
 
 /**
  * Test cases to ensure that Pattern objects can be generated consistently.

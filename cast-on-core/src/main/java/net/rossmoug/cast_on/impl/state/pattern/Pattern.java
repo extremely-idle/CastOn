@@ -1,4 +1,6 @@
-package net.rossmoug.cast_on.impl.state;
+package net.rossmoug.cast_on.impl.state.pattern;
+
+import net.rossmoug.cast_on.impl.state.IGauge;
 
 /**
  *
@@ -11,10 +13,10 @@ public class Pattern implements IPattern {
 	private IGauge patternGauge;
 	private double dimension;
 
-	public Pattern(IGauge userGauge, IGauge patternGauge, double dimension) {
-		this.userGauge = userGauge;
-		this.patternGauge = patternGauge;
-		this.dimension = dimension;
+	public Pattern(PatternBuilder builder) {
+		this.userGauge = builder.userGauge;
+		this.patternGauge = builder.patternGauge;
+		this.dimension = builder.dimension;
 	}
 
 	public IGauge getUserGauge() {

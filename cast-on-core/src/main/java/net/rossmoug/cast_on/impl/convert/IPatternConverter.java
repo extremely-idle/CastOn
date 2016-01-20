@@ -1,6 +1,6 @@
 package net.rossmoug.cast_on.impl.convert;
 
-import net.rossmoug.cast_on.impl.state.IPattern;
+import net.rossmoug.cast_on.impl.state.pattern.IPattern;
 
 /**
  * Pattern Conversion Engine.

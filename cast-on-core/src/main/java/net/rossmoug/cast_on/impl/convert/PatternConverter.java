@@ -3,7 +3,7 @@ package net.rossmoug.cast_on.impl.convert;
 import org.apache.log4j.Logger;
 
 import net.rossmoug.cast_on.impl.state.IGauge;
-import net.rossmoug.cast_on.impl.state.IPattern;
+import net.rossmoug.cast_on.impl.state.pattern.IPattern;
 
 /**
  * 

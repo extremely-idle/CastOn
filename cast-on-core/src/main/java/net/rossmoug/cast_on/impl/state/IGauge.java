@@ -1,12 +1,14 @@
 package net.rossmoug.cast_on.impl.state;
 
+import net.rossmoug.cast_on.impl.db.Mappable;
+
 /**
  * The representation of a gauge used in knitting.
  * 
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.0
  */
-public interface IGauge {
+public interface IGauge extends Mappable, Persistable {
 
 	/**
 	 * Retrieve the number of rows within the gauge.
