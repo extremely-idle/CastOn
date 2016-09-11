@@ -16,6 +16,7 @@ import net.rossmoug.cast_on.impl.state.IGauge;
 import net.rossmoug.cast_on.impl.state.Unit;
 import net.rossmoug.cast_on.impl.state.pattern.IPattern;
 import net.rossmoug.cast_on.impl.state.pattern.Pattern;
+import net.rossmoug.cast_on.impl.state.pattern.PatternBuilder;
 
 /**
  * Test cases for pattern conversion.
@@ -43,7 +44,8 @@ public class PatternConverterTest {
 			IGauge userGauge = new Gauge(15, 10, Unit.INCHES);// sub-class gauge?
 			IGauge patternGauge = new Gauge(30, 20, Unit.INCHES);
 			
-			IPattern pattern = new Pattern(userGauge, patternGauge, 4);
+			IPattern pattern = new PatternBuilder().userGauge(userGauge).patternGauge(patternGauge).dimension(4)
+					.build();
 			
 			IPatternConverter converter = new PatternConverter();
 			IConversionResult result = converter.convertPattern(pattern, input);

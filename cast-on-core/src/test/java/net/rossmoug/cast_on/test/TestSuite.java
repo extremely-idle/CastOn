@@ -12,8 +12,7 @@ import net.rossmoug.cast_on.test.web.oauth.RavelryOAuthServiceTest;
 @Suite.SuiteClasses({
    GaugeTest.class,
    PatternTest.class,
-   PatternConverterTest.class,
-   RavelryOAuthServiceTest.class
+   PatternConverterTest.class
 })
 /**
  * Test suite to execute all project tests.

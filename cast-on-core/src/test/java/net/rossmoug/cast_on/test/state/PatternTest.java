@@ -9,6 +9,7 @@ import net.rossmoug.cast_on.impl.state.IGauge;
 import net.rossmoug.cast_on.impl.state.Unit;
 import net.rossmoug.cast_on.impl.state.pattern.IPattern;
 import net.rossmoug.cast_on.impl.state.pattern.Pattern;
+import net.rossmoug.cast_on.impl.state.pattern.PatternBuilder;
 
 /**
  * Test cases to ensure that Pattern objects can be generated consistently.
@@ -23,12 +24,13 @@ public class PatternTest {
 	/**
 	 * 
 	 */
-	public void validPatternTest(){
-		try{
+	public void validPatternTest() {
+		try {
 			IGauge userGauge = new Gauge(15, 10, Unit.INCHES);
 			IGauge patternGauge = new Gauge(30, 20, Unit.INCHES);
-	
-			IPattern pattern = new Pattern(userGauge, patternGauge, 4);
+
+			IPattern pattern = new PatternBuilder().userGauge(userGauge).patternGauge(patternGauge).dimension(4)
+					.build();
 
 			Assert.assertNotNull("", pattern.getUserGauge());
 			Assert.assertNotNull("", pattern.getPatternGauge());
