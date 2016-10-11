@@ -1,4 +1,4 @@
-package com.rossmoug.cast_on.impl.state;
+package com.rossmoug.cast_on.state;
 
 /**
  *

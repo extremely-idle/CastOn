@@ -1,22 +1,22 @@
-package net.rossmoug.cast_on.test.convert;
+package com.rossmoug.cast_on.convert;
 
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import net.rossmoug.cast_on.impl.convert.ConversionInput;
-import net.rossmoug.cast_on.impl.convert.IConversionInput;
-import net.rossmoug.cast_on.impl.convert.IConversionResult;
-import net.rossmoug.cast_on.impl.convert.IPatternConverter;
-import net.rossmoug.cast_on.impl.convert.PatternConverter;
-import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
-import net.rossmoug.cast_on.impl.state.Gauge;
-import net.rossmoug.cast_on.impl.state.IGauge;
-import net.rossmoug.cast_on.impl.state.Unit;
-import net.rossmoug.cast_on.impl.state.pattern.IPattern;
-import net.rossmoug.cast_on.impl.state.pattern.Pattern;
-import net.rossmoug.cast_on.impl.state.pattern.PatternBuilder;
+import com.rossmoug.cast_on.convert.impl.ConversionInput;
+import com.rossmoug.cast_on.convert.IConversionInput;
+import com.rossmoug.cast_on.convert.IConversionResult;
+import com.rossmoug.cast_on.convert.IPatternConverter;
+import com.rossmoug.cast_on.convert.impl.PatternConverter;
+import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on.state.gauge.impl.Gauge;
+import com.rossmoug.cast_on.state.gauge.IGauge;
+import com.rossmoug.cast_on.state.Unit;
+import com.rossmoug.cast_on.state.pattern.IPattern;
+import com.rossmoug.cast_on.state.pattern.impl.Pattern;
+import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
 
 /**
  * Test cases for pattern conversion.

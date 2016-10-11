@@ -1,6 +1,8 @@
-package com.rossmoug.cast_on.impl.state;
+package com.rossmoug.cast_on.state.gauge.impl;
 
-import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
+import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on.state.Unit;
+import com.rossmoug.cast_on.state.gauge.IGauge;
 
 /**
  * 

@@ -1,12 +1,11 @@
-package net.rossmoug.cast_on.test;
+package com.rossmoug.cast_on;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import net.rossmoug.cast_on.test.convert.PatternConverterTest;
-import net.rossmoug.cast_on.test.state.GaugeTest;
-import net.rossmoug.cast_on.test.state.PatternTest;
-import net.rossmoug.cast_on.test.web.oauth.RavelryOAuthServiceTest;
+import com.rossmoug.cast_on.convert.PatternConverterTest;
+import com.rossmoug.cast_on.state.GaugeTest;
+import com.rossmoug.cast_on.state.PatternTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

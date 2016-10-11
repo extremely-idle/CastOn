@@ -1,4 +1,4 @@
-package net.rossmoug.cast_on.test.state;
+package com.rossmoug.cast_on.state;
 
 import org.junit.Assert;
 
@@ -6,10 +6,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
-import net.rossmoug.cast_on.impl.state.Gauge;
-import net.rossmoug.cast_on.impl.state.IGauge;
-import net.rossmoug.cast_on.impl.state.Unit;
+import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on.state.gauge.impl.Gauge;
+import com.rossmoug.cast_on.state.gauge.IGauge;
+import com.rossmoug.cast_on.state.Unit;
 
 /**
  * Tests to ensure that the generation of Gauge objects is consistent.

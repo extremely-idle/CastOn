@@ -1,15 +1,15 @@
-package net.rossmoug.cast_on.test.state;
+package com.rossmoug.cast_on.state;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import net.rossmoug.cast_on.impl.convert.excp.InvalidConversionArgumentException;
-import net.rossmoug.cast_on.impl.state.Gauge;
-import net.rossmoug.cast_on.impl.state.IGauge;
-import net.rossmoug.cast_on.impl.state.Unit;
-import net.rossmoug.cast_on.impl.state.pattern.IPattern;
-import net.rossmoug.cast_on.impl.state.pattern.Pattern;
-import net.rossmoug.cast_on.impl.state.pattern.PatternBuilder;
+import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on.state.Unit;
+import com.rossmoug.cast_on.state.gauge.IGauge;
+import com.rossmoug.cast_on.state.gauge.impl.Gauge;
+import com.rossmoug.cast_on.state.pattern.IPattern;
+import com.rossmoug.cast_on.state.pattern.impl.Pattern;
+import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
 
 /**
  * Test cases to ensure that Pattern objects can be generated consistently.

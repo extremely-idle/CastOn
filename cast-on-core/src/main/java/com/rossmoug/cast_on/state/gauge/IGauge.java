@@ -1,6 +1,6 @@
-package com.rossmoug.cast_on.impl.state;
+package com.rossmoug.cast_on.state.gauge;
 
-import net.rossmoug.cast_on.impl.db.Mappable;
+import com.rossmoug.cast_on.state.Unit;
 
 /**
  * The representation of a gauge used in knitting.
@@ -8,7 +8,7 @@ import net.rossmoug.cast_on.impl.db.Mappable;
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.0
  */
-public interface IGauge extends Mappable, Persistable {
+public interface IGauge {
 
 	/**
 	 * Retrieve the number of rows within the gauge.
