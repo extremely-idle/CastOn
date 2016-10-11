@@ -1,0 +1,14 @@
+com\rossmoug\cast_on\state\pattern\impl\Pattern.class
+com\rossmoug\cast_on\state\gauge\IGauge.class
+com\rossmoug\cast_on\convert\IConversionInput.class
+com\rossmoug\cast_on\state\Unit.class
+com\rossmoug\cast_on\convert\impl\ConversionResult.class
+com\rossmoug\cast_on\convert\IPatternConverter.class
+com\rossmoug\cast_on\convert\exception\InvalidConversionArgumentException.class
+com\rossmoug\cast_on\state\gauge\impl\Gauge.class
+com\rossmoug\cast_on\state\pattern\IPattern.class
+com\rossmoug\cast_on\state\pattern\impl\ConvertedPattern.class
+com\rossmoug\cast_on\convert\IConversionResult.class
+com\rossmoug\cast_on\convert\impl\ConversionInput.class
+com\rossmoug\cast_on\convert\impl\PatternConverter.class
+com\rossmoug\cast_on\state\pattern\builder\PatternBuilder.class
