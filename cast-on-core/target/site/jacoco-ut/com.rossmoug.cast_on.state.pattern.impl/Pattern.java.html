@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Pattern.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cast-on</a> &gt; <a href="index.source.html" class="el_package">com.rossmoug.cast_on.state.pattern.impl</a> &gt; <span class="el_source">Pattern.java</span></div><h1>Pattern.java</h1><pre class="source lang-java linenums">package com.rossmoug.cast_on.state.pattern.impl;
+
+import com.rossmoug.cast_on.state.gauge.IGauge;
+import com.rossmoug.cast_on.state.pattern.IPattern;
+import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
+
+/**
+ *
+ * @author Ross Moug (ross.moug@gmail.com)
+ * @version 1.1
+ */
+public class Pattern implements IPattern, Comparable&lt;Pattern&gt; {
+
+	private IGauge patternGauge;
+	private double dimension;
+
+<span class="fc" id="L17">	public Pattern(PatternBuilder builder) {</span>
+<span class="fc" id="L18">		this.patternGauge = builder.patternGauge;</span>
+<span class="fc" id="L19">		this.dimension = builder.dimension;</span>
+<span class="fc" id="L20">	}</span>
+
+	public IGauge getGauge() {
+<span class="fc" id="L23">		return patternGauge;</span>
+	}
+
+	public double getDimension() {
+<span class="fc" id="L27">		return dimension;</span>
+	}
+
+	@Override
+	/*
+	 * (nonJavadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() {
+<span class="fc" id="L37">		return &quot;Pattern [patternGauge=&quot; + patternGauge + &quot;, dimension=&quot; + dimension + &quot;]&quot;;</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+<span class="nc" id="L45">		final int prime = 31;</span>
+<span class="nc" id="L46">		int result = 1;</span>
+		long temp;
+<span class="nc" id="L48">		temp = Double.doubleToLongBits(dimension);</span>
+<span class="nc" id="L49">		result = prime * result + (int) (temp ^ (temp &gt;&gt;&gt; 32));</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">		result = prime * result + ((patternGauge == null) ? 0 : patternGauge.hashCode());</span>
+<span class="nc" id="L51">		return result;</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L60">			return true;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L62">			return false;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L64">			return false;</span>
+<span class="nc" id="L65">		Pattern other = (Pattern) obj;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">		if (Double.doubleToLongBits(dimension) != Double.doubleToLongBits(other.dimension))</span>
+<span class="nc" id="L67">			return false;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">		if (patternGauge == null) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">			if (other.patternGauge != null)</span>
+<span class="nc" id="L70">				return false;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		} else if (!patternGauge.equals(other.patternGauge))</span>
+<span class="nc" id="L72">			return false;</span>
+<span class="nc" id="L73">		return true;</span>
+	}
+
+	@Override
+	public int compareTo(Pattern o) {
+<span class="nc" id="L78">		return 0;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
