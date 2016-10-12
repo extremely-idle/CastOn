@@ -1,7 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-cast-on,com.rossmoug.cast_on.convert.impl,PatternConverter,0,275,0,0,0,28,0,9,0,9
-cast-on,com.rossmoug.cast_on.state.pattern.impl,Pattern,83,34,16,0,22,7,11,4,3,4
-cast-on,com.rossmoug.cast_on.state,Unit,9,29,0,0,0,2,2,2,2,2
-cast-on,com.rossmoug.cast_on.state.gauge.impl,Gauge,80,62,16,4,21,12,11,6,2,5
-cast-on,com.rossmoug.cast_on.convert.exception,InvalidConversionArgumentException,0,4,0,0,0,2,0,1,0,1
-cast-on,com.rossmoug.cast_on.state.pattern.builder,PatternBuilder,0,18,0,0,0,6,0,4,0,4
