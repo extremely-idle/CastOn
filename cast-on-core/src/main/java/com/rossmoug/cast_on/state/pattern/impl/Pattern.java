@@ -11,21 +11,15 @@ import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
  */
 public class Pattern implements IPattern, Comparable<Pattern> {
 
-	private IGauge userGauge;
 	private IGauge patternGauge;
 	private double dimension;
 
 	public Pattern(PatternBuilder builder) {
-		this.userGauge = builder.userGauge;
 		this.patternGauge = builder.patternGauge;
 		this.dimension = builder.dimension;
 	}
 
-	public IGauge getUserGauge() {
-		return userGauge;
-	}
-
-	public IGauge getPatternGauge() {
+	public IGauge getGauge() {
 		return patternGauge;
 	}
 
@@ -40,12 +34,24 @@ public class Pattern implements IPattern, Comparable<Pattern> {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Pattern [userGauge=" + userGauge + ", patternGauge=" + patternGauge + ", dimension=" + dimension + "]";
+		return "Pattern [patternGauge=" + patternGauge + ", dimension=" + dimension + "]";
 	}
 
-	/*
-	 * (nonJavadoc)
-	 * 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(dimension);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((patternGauge == null) ? 0 : patternGauge.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -64,29 +70,7 @@ public class Pattern implements IPattern, Comparable<Pattern> {
 				return false;
 		} else if (!patternGauge.equals(other.patternGauge))
 			return false;
-		if (userGauge == null) {
-			if (other.userGauge != null)
-				return false;
-		} else if (!userGauge.equals(other.userGauge))
-			return false;
 		return true;
-	}
-
-	/*
-	 * (nonJavadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(dimension);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((patternGauge == null) ? 0 : patternGauge.hashCode());
-		result = prime * result + ((userGauge == null) ? 0 : userGauge.hashCode());
-		return result;
 	}
 
 	@Override

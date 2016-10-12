@@ -6,8 +6,6 @@ public interface IPattern {
 
 	double getDimension();
 
-	IGauge getPatternGauge();
-
-	IGauge getUserGauge();
+	IGauge getGauge();
 
 }

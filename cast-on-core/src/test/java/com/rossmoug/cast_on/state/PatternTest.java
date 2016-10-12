@@ -26,14 +26,12 @@ public class PatternTest {
 	 */
 	public void validPatternTest() {
 		try {
-			IGauge userGauge = new Gauge(15, 10, Unit.INCHES);
 			IGauge patternGauge = new Gauge(30, 20, Unit.INCHES);
 
-			IPattern pattern = new PatternBuilder().userGauge(userGauge).patternGauge(patternGauge).dimension(4)
+			IPattern pattern = new PatternBuilder().patternGauge(patternGauge).dimension(4)
 					.build();
 
-			Assert.assertNotNull("", pattern.getUserGauge());
-			Assert.assertNotNull("", pattern.getPatternGauge());
+			Assert.assertNotNull("", pattern.getGauge());
 			Assert.assertEquals(4, pattern.getDimension(), 0);
 		} catch (InvalidConversionArgumentException e) {
 			Assert.fail("Unexpected exception encountered.");

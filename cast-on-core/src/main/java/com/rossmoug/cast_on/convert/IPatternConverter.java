@@ -1,5 +1,7 @@
 package com.rossmoug.cast_on.convert;
 
+import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on.state.gauge.IGauge;
 import com.rossmoug.cast_on.state.pattern.IPattern;
 
 /**
@@ -15,6 +17,7 @@ public interface IPatternConverter {
 	 * @param pattern
 	 * @param conversionInput
 	 * @return
+	 * @throws InvalidConversionArgumentException 
 	 */
-	public IConversionResult convertPattern(IPattern pattern, IConversionInput conversionInput);
+	public IPattern convertPattern(IPattern pattern, IGauge gauge) throws InvalidConversionArgumentException;
 }

@@ -2,11 +2,12 @@ package com.rossmoug.cast_on.convert.impl;
 
 import org.apache.log4j.Logger;
 
-import com.rossmoug.cast_on.convert.IConversionInput;
-import com.rossmoug.cast_on.convert.IConversionResult;
 import com.rossmoug.cast_on.convert.IPatternConverter;
+import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.cast_on.state.gauge.IGauge;
+import com.rossmoug.cast_on.state.gauge.impl.Gauge;
 import com.rossmoug.cast_on.state.pattern.IPattern;
+import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
 
 /**
  * 
@@ -24,8 +25,9 @@ public class PatternConverter implements IPatternConverter {
 	 * @return
 	 */
 	private double rowsPerUnit(IGauge gauge, double dimension) {
-		logger.trace("rowsPerUnit(\n" + "  gauge     => " + gauge.toString() + "\n" + " ,dimension => " + dimension
+		logger.trace("rowsPerUnit(\n" + "  gauge     => " + gauge + "\n" + " ,dimension => " + dimension
 				+ "\n" + ")");
+
 		return gauge.getRowCount() / dimension;
 	}
 
@@ -34,14 +36,14 @@ public class PatternConverter implements IPatternConverter {
 	 * @param pattern
 	 * @return
 	 */
-	private double rowConversionFactor(IPattern pattern) {
-		logger.trace("rowConversionFactor(\n" + "  pattern => " + pattern.toString() + "\n" + ")");
+	private double rowConversionFactor(IPattern pattern, IGauge gauge) {
+		logger.trace("rowConversionFactor(\n" + "  pattern => " + pattern + "\ngauge => " + gauge + ")");
 
-		logger.info("rows/unit pattern => " + rowsPerUnit(pattern.getPatternGauge(), pattern.getDimension()));
-		logger.info("rows/unit user => " + rowsPerUnit(pattern.getUserGauge(), pattern.getDimension()));
+		logger.info("rows/unit pattern => " + rowsPerUnit(pattern.getGauge(), pattern.getDimension()));
+		logger.info("rows/unit user => " + rowsPerUnit(gauge, pattern.getDimension()));
 
-		return rowsPerUnit(pattern.getUserGauge(), pattern.getDimension())
-				/ rowsPerUnit(pattern.getPatternGauge(), pattern.getDimension());
+		return rowsPerUnit(gauge, pattern.getDimension())
+				/ rowsPerUnit(pattern.getGauge(), pattern.getDimension());
 	}
 
 	/**
@@ -50,12 +52,11 @@ public class PatternConverter implements IPatternConverter {
 	 * @param rowCount
 	 * @return
 	 */
-	private double convertRows(double factor, int rowCount) {
+	private int convertRows(double factor, int rowCount) {
 		logger.trace("convertRows(\n" + "  factor => " + factor + "\n" + " ,rowCount => " + rowCount + "\n" + ")");
-
 		logger.debug("convertedRows => " + Math.round(rowCount * factor));
 
-		return Math.round(rowCount * factor);
+		return (int) Math.round(rowCount * factor);
 	}
 
 	/**
@@ -65,8 +66,9 @@ public class PatternConverter implements IPatternConverter {
 	 * @return
 	 */
 	private double stitchesPerUnit(IGauge gauge, double dimension) {
-		logger.trace("stitchesPerUnit(\n" + "  gauge => " + gauge.toString() + "\n" + " ,dimension => " + dimension
+		logger.trace("stitchesPerUnit(\n" + "  gauge => " + gauge + "\n" + " ,dimension => " + dimension
 				+ "\n" + ")");
+
 		return gauge.getStitchCount() / dimension;
 	}
 
@@ -75,11 +77,11 @@ public class PatternConverter implements IPatternConverter {
 	 * @param pattern
 	 * @return
 	 */
-	private double stitchConversionFactor(IPattern pattern) {
+	private double stitchConversionFactor(IPattern pattern, IGauge gauge) {
 		logger.trace("stitchConversionFactor(\n" + "  pattern => " + pattern.toString() + "\n" + ")");
 
-		return stitchesPerUnit(pattern.getUserGauge(), pattern.getDimension())
-				/ stitchesPerUnit(pattern.getPatternGauge(), pattern.getDimension());
+		return stitchesPerUnit(gauge, pattern.getDimension())
+				/ stitchesPerUnit(pattern.getGauge(), pattern.getDimension());
 	}
 
 	/**
@@ -88,30 +90,35 @@ public class PatternConverter implements IPatternConverter {
 	 * @param stitchCount
 	 * @return
 	 */
-	private double convertStitch(double factor, int stitchCount) {
-		logger.trace("stitchConversionFactor(\n" + "  factor => " + factor + "\n" + " ,stitchCount => " + stitchCount
+	private int convertStitch(double factor, int stitchCount) {
+		logger.trace("convertStitch(\n" + "  factor => " + factor + "\n" + " ,stitchCount => " + stitchCount
 				+ "\n" + ")");
-		return Math.round(stitchCount * factor);
+
+		return (int) Math.round(stitchCount * factor);
 	}
 
 	/**
 	 * 
 	 * @param pattern
 	 * @param conversionInput
+	 * @throws InvalidConversionArgumentException 
 	 */
-	public IConversionResult convertPattern(IPattern pattern, IConversionInput conversionInput) {
-		logger.trace("convertPattern(\n" + "  factor => " + pattern.toString() + "\n" + " ,stitchCount => " + conversionInput.toString()
+	public IPattern convertPattern(IPattern pattern, IGauge gauge) throws InvalidConversionArgumentException {
+		logger.trace("convertPattern(\n" + "  factor => " + pattern + "\n" + " ,stitchCount => " + gauge
 				+ "\n" + ")");
-		IConversionResult result = new ConversionResult();
 
-		result.setConvertedRowCount(convertRows(rowConversionFactor(pattern), conversionInput.getInputRowCount()));
-		result.setConvertedStitchCount(
-				convertStitch(stitchConversionFactor(pattern), conversionInput.getInputStitchCount()));
+		PatternBuilder builder = new PatternBuilder();
 
-		logger.debug("rows => " + result.getConvertedRowCount());
-		logger.debug("stitches => " + result.getConvertedStitchCount());
+		int convertedRowCount = convertRows(rowConversionFactor(pattern, gauge), gauge.getRowCount());
+		int convertedStitchCount = convertStitch(stitchConversionFactor(pattern, gauge), gauge.getStitchCount());
 
-		return result;
+		IGauge convertedGauge = new Gauge(convertedRowCount, convertedStitchCount, gauge.getUnit());
+		IPattern convertedPattern = builder.patternGauge(convertedGauge).dimension(pattern.getDimension()).build();
+
+		logger.debug("rows => " + convertedPattern.getGauge().getRowCount());
+		logger.debug("stitches => " + convertedPattern.getGauge().getStitchCount());
+
+		return convertedPattern;
 	}
 
 }

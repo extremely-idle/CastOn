@@ -28,13 +28,13 @@ public class GaugeTest {
 	 * 
 	 */
 	public void validGaugeTest(){
-		IGauge gauge;
+		IGauge knittingGauge;
 		try {
-			gauge = new Gauge(1, 1, Unit.INCHES);
+			knittingGauge = new Gauge(1, 1, Unit.INCHES);
 
-			Assert.assertEquals(1, gauge.getRowCount());
-			Assert.assertEquals(1, gauge.getStitchCount());
-			Assert.assertEquals(Unit.INCHES, gauge.getUnit());
+			Assert.assertEquals(1, knittingGauge.getRowCount());
+			Assert.assertEquals(1, knittingGauge.getStitchCount());
+			Assert.assertEquals(Unit.INCHES, knittingGauge.getUnit());
 		} catch (InvalidConversionArgumentException e) {
 			Assert.fail("Unexpected exception encountered.");
 		}
@@ -46,7 +46,7 @@ public class GaugeTest {
 	 * @throws InvalidArgumentException
 	 */
 	public void invalidCountTest() throws InvalidConversionArgumentException{
-		IGauge gauge = new Gauge(0, 0, Unit.INCHES);
+		IGauge knittingGauge = new Gauge(0, 0, Unit.INCHES);
 
 		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage("Row and stitch count can not be zero or negative.");
@@ -58,7 +58,7 @@ public class GaugeTest {
 	 * @throws InvalidArgumentException
 	 */
 	public void invalidUnitTest() throws InvalidConversionArgumentException{
-		IGauge gauge = new Gauge(0, 0, null);
+		IGauge knittingGauge = new Gauge(0, 0, null);
 
 		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage("Unit must be provided.");
