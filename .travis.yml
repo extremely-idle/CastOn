@@ -1,1 +1,7 @@
 language: java
+
+env:
+  - TEST_DIR=cast-on-core
+  - TEST_DIR=android
+
+script: cd $TEST_DIR && mvn test
