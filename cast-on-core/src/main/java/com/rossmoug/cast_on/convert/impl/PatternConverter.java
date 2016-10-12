@@ -15,7 +15,7 @@ import com.rossmoug.cast_on.state.pattern.IPattern;
  */
 public class PatternConverter implements IPatternConverter {
 
-	static Logger logger = Logger.getLogger(PatternConverter.class);
+	private static final Logger logger = Logger.getLogger(PatternConverter.class);
 
 	/**
 	 * 

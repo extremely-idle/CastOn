@@ -15,7 +15,6 @@ import com.rossmoug.cast_on.state.gauge.impl.Gauge;
 import com.rossmoug.cast_on.state.gauge.IGauge;
 import com.rossmoug.cast_on.state.Unit;
 import com.rossmoug.cast_on.state.pattern.IPattern;
-import com.rossmoug.cast_on.state.pattern.impl.Pattern;
 import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
 
 /**
