@@ -2,4 +2,4 @@ language: java
 
 script:
   - cd cast-on-core && mvn test
-  - cd ../android && gradle check
+#  - cd ../android && gradle check
