@@ -5,4 +5,5 @@ script:
 #  - cd ../android && gradle check
 
 after_success:
-  - cd cast-on-core && mvn clean test jacoco:report coveralls:report
+  - pwd
+  - mvn clean test jacoco:report coveralls:report
