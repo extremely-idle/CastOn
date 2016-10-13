@@ -6,8 +6,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+
 import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.cast_on.state.gauge.impl.Gauge;
+
+import junitx.extensions.EqualsHashCodeTestCase;
+
 import com.rossmoug.cast_on.state.gauge.IGauge;
 import com.rossmoug.cast_on.state.Unit;
 
@@ -18,7 +22,11 @@ import com.rossmoug.cast_on.state.Unit;
  * @version 1.1
  * @see Gauge
  */
-public class GaugeTest {
+public class GaugeTest extends EqualsHashCodeTestCase {
+
+	public GaugeTest(String name) {
+		super(name);
+	}
 
 	@Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -62,5 +70,15 @@ public class GaugeTest {
 
 		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage("Unit must be provided.");
+	}
+
+	@Override
+	protected Object createInstance() throws Exception {
+		return new Gauge(1, 1, Unit.INCHES);
+	}
+
+	@Override
+	protected Object createNotEqualInstance() throws Exception {
+		return new Gauge(2, 2, Unit.INCHES);
 	}
 }

@@ -37,7 +37,7 @@ public class PatternConverterTest {
 			IGauge userGauge = new Gauge(10, 10, Unit.INCHES);// sub-class gauge?
 			IGauge patternGauge = new Gauge(30, 20, Unit.INCHES);
 			
-			IPattern pattern = new PatternBuilder().patternGauge(patternGauge).dimension(4)
+			IPattern pattern = new PatternBuilder().gauge(patternGauge).dimension(4)
 					.build();
 			
 			IPatternConverter converter = new PatternConverter();

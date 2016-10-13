@@ -1,5 +1,7 @@
 package com.rossmoug.cast_on.state.gauge.impl;
 
+import java.util.Objects;
+
 import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.cast_on.state.Unit;
 import com.rossmoug.cast_on.state.gauge.IGauge;
@@ -16,16 +18,16 @@ public class Gauge implements IGauge {
 	private int rowCount;
 	private int stitchCount;
 	private Unit unit;
-	
+
 	/**
 	 * 
 	 * @param rowCount
 	 * @param stitchCount
 	 * @param unit
-	 * @throws InvalidConversionArgumentException 
+	 * @throws InvalidConversionArgumentException
 	 */
-	public Gauge(int rowCount, int stitchCount, Unit unit) throws InvalidConversionArgumentException{
-		if (Math.signum(rowCount) != POSITIVE_VALUE || Math.signum(stitchCount) != POSITIVE_VALUE){
+	public Gauge(final int rowCount, final int stitchCount, final Unit unit) throws InvalidConversionArgumentException {
+		if (Math.signum(rowCount) != POSITIVE_VALUE || Math.signum(stitchCount) != POSITIVE_VALUE) {
 			throw new InvalidConversionArgumentException("Row and stitch count can not be zero or negative.");
 		} else if (unit == null) {
 			throw new InvalidConversionArgumentException("Unit must be provided.");
@@ -35,8 +37,7 @@ public class Gauge implements IGauge {
 		this.stitchCount = stitchCount;
 		this.unit = unit;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @return
@@ -45,7 +46,6 @@ public class Gauge implements IGauge {
 		return rowCount;
 	}
 
-	
 	/**
 	 * 
 	 * @return
@@ -54,7 +54,6 @@ public class Gauge implements IGauge {
 		return stitchCount;
 	}
 
-	
 	/**
 	 * 
 	 * @return
@@ -63,49 +62,40 @@ public class Gauge implements IGauge {
 		return unit;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Gauge [rowCount=" + rowCount + ", stitchCount=" + stitchCount + ", unit=" + unit + "]";
+		return this.getClass().getSimpleName() + " [" + Objects.toString(rowCount) + ", "
+				+ Objects.toString(stitchCount) + ", " + Objects.toString(unit) + "]";
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + rowCount;
-		result = prime * result + stitchCount;
-		result = prime * result + ((unit == null) ? 0 : unit.hashCode());
-		return result;
+		return Objects.hashCode(rowCount) + Objects.hashCode(stitchCount) + Objects.hashCode(unit);
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if (!(obj instanceof Gauge)) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Gauge other = (Gauge) obj;
-		if (rowCount != other.rowCount)
-			return false;
-		if (stitchCount != other.stitchCount)
-			return false;
-		if (unit != other.unit)
-			return false;
-		return true;
+		}
+		final Gauge other = (Gauge) obj;
+		return Objects.equals(this.rowCount, other.rowCount) && Objects.equals(this.stitchCount, other.stitchCount)
+				&& Objects.equals(this.unit, other.unit);
 	}
 
 }

@@ -113,7 +113,7 @@ public class PatternConverter implements IPatternConverter {
 		int convertedStitchCount = convertStitch(stitchConversionFactor(pattern, gauge), gauge.getStitchCount());
 
 		IGauge convertedGauge = new Gauge(convertedRowCount, convertedStitchCount, gauge.getUnit());
-		IPattern convertedPattern = builder.patternGauge(convertedGauge).dimension(pattern.getDimension()).build();
+		IPattern convertedPattern = builder.gauge(convertedGauge).dimension(pattern.getDimension()).build();
 
 		logger.debug("rows => " + convertedPattern.getGauge().getRowCount());
 		logger.debug("stitches => " + convertedPattern.getGauge().getStitchCount());

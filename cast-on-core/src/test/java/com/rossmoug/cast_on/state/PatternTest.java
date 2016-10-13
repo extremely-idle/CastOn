@@ -9,6 +9,9 @@ import com.rossmoug.cast_on.state.gauge.IGauge;
 import com.rossmoug.cast_on.state.gauge.impl.Gauge;
 import com.rossmoug.cast_on.state.pattern.IPattern;
 import com.rossmoug.cast_on.state.pattern.impl.Pattern;
+
+import junitx.extensions.EqualsHashCodeTestCase;
+
 import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
 
 /**
@@ -18,7 +21,11 @@ import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
  * @version 1.1
  * @see Pattern
  */
-public class PatternTest {
+public class PatternTest extends EqualsHashCodeTestCase {
+
+	public PatternTest(String name) {
+		super(name);
+	}
 
 	@Test
 	/**
@@ -28,7 +35,7 @@ public class PatternTest {
 		try {
 			IGauge patternGauge = new Gauge(30, 20, Unit.INCHES);
 
-			IPattern pattern = new PatternBuilder().patternGauge(patternGauge).dimension(4)
+			IPattern pattern = new PatternBuilder().gauge(patternGauge).dimension(4)
 					.build();
 
 			Assert.assertNotNull("", pattern.getGauge());
@@ -36,5 +43,15 @@ public class PatternTest {
 		} catch (InvalidConversionArgumentException e) {
 			Assert.fail("Unexpected exception encountered.");
 		}
+	}
+
+	@Override
+	protected Object createInstance() throws Exception {
+		return new PatternBuilder().dimension(1).gauge(new Gauge(1, 1, Unit.CM)).build();
+	}
+
+	@Override
+	protected Object createNotEqualInstance() throws Exception {
+		return new PatternBuilder().dimension(2).gauge(new Gauge(2, 2, Unit.INCHES)).build();
 	}
 }

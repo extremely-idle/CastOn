@@ -12,16 +12,16 @@ import com.rossmoug.cast_on.state.pattern.impl.Pattern;
  */
 public class PatternBuilder {
 
-	public IGauge patternGauge;
+	public IGauge gauge;
 	public double dimension;
 
 	/**
 	 * 
-	 * @param patternGauge
+	 * @param gauge
 	 * @return
 	 */
-	public PatternBuilder patternGauge(IGauge patternGauge) {
-		this.patternGauge = patternGauge;
+	public PatternBuilder gauge(IGauge gauge) {
+		this.gauge = gauge;
 		return this;
 	}
 
