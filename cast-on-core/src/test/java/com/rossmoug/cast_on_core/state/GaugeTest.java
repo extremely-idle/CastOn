@@ -1,4 +1,4 @@
-package com.rossmoug.cast_on.state;
+package com.rossmoug.cast_on_core.state;
 
 import org.junit.Assert;
 
@@ -6,20 +6,18 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-
-import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
-import com.rossmoug.cast_on.state.gauge.impl.Gauge;
+import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on_core.state.Unit;
+import com.rossmoug.cast_on_core.state.gauge.IGauge;
+import com.rossmoug.cast_on_core.state.gauge.impl.Gauge;
 
 import junitx.extensions.EqualsHashCodeTestCase;
-
-import com.rossmoug.cast_on.state.gauge.IGauge;
-import com.rossmoug.cast_on.state.Unit;
 
 /**
  * Tests to ensure that the generation of Gauge objects is consistent.
  * 
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.1
+ * @version 1.2
  * @see Gauge
  */
 public class GaugeTest extends EqualsHashCodeTestCase {

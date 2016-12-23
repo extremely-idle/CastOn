@@ -1,7 +1,7 @@
-package com.rossmoug.cast_on.state.pattern.builder;
+package com.rossmoug.cast_on_core.state.pattern.builder;
 
-import com.rossmoug.cast_on.state.gauge.IGauge;
-import com.rossmoug.cast_on.state.pattern.impl.Pattern;
+import com.rossmoug.cast_on_core.state.gauge.IGauge;
+import com.rossmoug.cast_on_core.state.pattern.impl.Pattern;
 
 /**
  * Builder for Pattern objects.

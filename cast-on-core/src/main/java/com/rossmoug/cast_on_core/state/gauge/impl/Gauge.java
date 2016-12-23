@@ -1,13 +1,14 @@
-package com.rossmoug.cast_on.state.gauge.impl;
+package com.rossmoug.cast_on_core.state.gauge.impl;
 
 import java.util.Objects;
 
-import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
-import com.rossmoug.cast_on.state.Unit;
-import com.rossmoug.cast_on.state.gauge.IGauge;
+import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on_core.state.Unit;
+import com.rossmoug.cast_on_core.state.gauge.IGauge;
 
 /**
  * 
+ *
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.1
  */
@@ -19,6 +20,10 @@ public class Gauge implements IGauge {
 	private int stitchCount;
 	private Unit unit;
 
+	public Gauge(){
+		
+	}
+	
 	/**
 	 * 
 	 * @param rowCount

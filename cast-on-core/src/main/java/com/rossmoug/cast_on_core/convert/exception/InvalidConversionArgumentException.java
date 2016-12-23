@@ -1,4 +1,4 @@
-package com.rossmoug.cast_on.convert.exception;
+package com.rossmoug.cast_on_core.convert.exception;
 
 public class InvalidConversionArgumentException extends Exception {
 

@@ -1,13 +1,13 @@
-package com.rossmoug.cast_on.convert.impl;
+package com.rossmoug.cast_on_core.convert.impl;
 
 import org.apache.log4j.Logger;
 
-import com.rossmoug.cast_on.convert.IPatternConverter;
-import com.rossmoug.cast_on.convert.exception.InvalidConversionArgumentException;
-import com.rossmoug.cast_on.state.gauge.IGauge;
-import com.rossmoug.cast_on.state.gauge.impl.Gauge;
-import com.rossmoug.cast_on.state.pattern.IPattern;
-import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
+import com.rossmoug.cast_on_core.convert.IPatternConverter;
+import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on_core.state.gauge.IGauge;
+import com.rossmoug.cast_on_core.state.gauge.impl.Gauge;
+import com.rossmoug.cast_on_core.state.pattern.IPattern;
+import com.rossmoug.cast_on_core.state.pattern.builder.PatternBuilder;
 
 /**
  * 
@@ -17,6 +17,11 @@ import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
 public class PatternConverter implements IPatternConverter {
 
 	private static final Logger logger = Logger.getLogger(PatternConverter.class);
+	private static PatternConverter instance;
+
+	private PatternConverter() {
+
+	}
 
 	/**
 	 * 
@@ -25,8 +30,7 @@ public class PatternConverter implements IPatternConverter {
 	 * @return
 	 */
 	private double rowsPerUnit(IGauge gauge, double dimension) {
-		logger.trace("rowsPerUnit(\n" + "  gauge     => " + gauge + "\n" + " ,dimension => " + dimension
-				+ "\n" + ")");
+		logger.trace("rowsPerUnit(\n" + "  gauge     => " + gauge + "\n" + " ,dimension => " + dimension + "\n" + ")");
 
 		return gauge.getRowCount() / dimension;
 	}
@@ -42,8 +46,7 @@ public class PatternConverter implements IPatternConverter {
 		logger.info("rows/unit pattern => " + rowsPerUnit(pattern.getGauge(), pattern.getDimension()));
 		logger.info("rows/unit user => " + rowsPerUnit(gauge, pattern.getDimension()));
 
-		return rowsPerUnit(gauge, pattern.getDimension())
-				/ rowsPerUnit(pattern.getGauge(), pattern.getDimension());
+		return rowsPerUnit(gauge, pattern.getDimension()) / rowsPerUnit(pattern.getGauge(), pattern.getDimension());
 	}
 
 	/**
@@ -66,8 +69,7 @@ public class PatternConverter implements IPatternConverter {
 	 * @return
 	 */
 	private double stitchesPerUnit(IGauge gauge, double dimension) {
-		logger.trace("stitchesPerUnit(\n" + "  gauge => " + gauge + "\n" + " ,dimension => " + dimension
-				+ "\n" + ")");
+		logger.trace("stitchesPerUnit(\n" + "  gauge => " + gauge + "\n" + " ,dimension => " + dimension + "\n" + ")");
 
 		return gauge.getStitchCount() / dimension;
 	}
@@ -91,8 +93,8 @@ public class PatternConverter implements IPatternConverter {
 	 * @return
 	 */
 	private int convertStitch(double factor, int stitchCount) {
-		logger.trace("convertStitch(\n" + "  factor => " + factor + "\n" + " ,stitchCount => " + stitchCount
-				+ "\n" + ")");
+		logger.trace(
+				"convertStitch(\n" + "  factor => " + factor + "\n" + " ,stitchCount => " + stitchCount + "\n" + ")");
 
 		return (int) Math.round(stitchCount * factor);
 	}
@@ -101,11 +103,10 @@ public class PatternConverter implements IPatternConverter {
 	 * 
 	 * @param pattern
 	 * @param conversionInput
-	 * @throws InvalidConversionArgumentException 
+	 * @throws InvalidConversionArgumentException
 	 */
 	public IPattern convertPattern(IPattern pattern, IGauge gauge) throws InvalidConversionArgumentException {
-		logger.trace("convertPattern(\n" + "  factor => " + pattern + "\n" + " ,stitchCount => " + gauge
-				+ "\n" + ")");
+		logger.trace("convertPattern(\n" + "  factor => " + pattern + "\n" + " ,stitchCount => " + gauge + "\n" + ")");
 
 		PatternBuilder builder = new PatternBuilder();
 
@@ -119,6 +120,18 @@ public class PatternConverter implements IPatternConverter {
 		logger.debug("stitches => " + convertedPattern.getGauge().getStitchCount());
 
 		return convertedPattern;
+	}
+
+	public static PatternConverter getInstance() {
+		if (instance == null) {
+			synchronized (PatternConverter.class) {
+				if (instance == null) {
+					instance = new PatternConverter();
+				}
+			}
+		}
+
+		return instance;
 	}
 
 }

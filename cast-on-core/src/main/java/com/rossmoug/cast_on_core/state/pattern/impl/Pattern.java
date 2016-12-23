@@ -1,12 +1,13 @@
-package com.rossmoug.cast_on.state.pattern.impl;
+package com.rossmoug.cast_on_core.state.pattern.impl;
 
 import java.util.Objects;
 
-import com.rossmoug.cast_on.state.gauge.IGauge;
-import com.rossmoug.cast_on.state.pattern.IPattern;
-import com.rossmoug.cast_on.state.pattern.builder.PatternBuilder;
+import com.rossmoug.cast_on_core.state.gauge.IGauge;
+import com.rossmoug.cast_on_core.state.pattern.IPattern;
+import com.rossmoug.cast_on_core.state.pattern.builder.PatternBuilder;
 
 /**
+ * 
  *
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.1
