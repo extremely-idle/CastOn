@@ -2,15 +2,13 @@ package com.rossmoug.cast_on_core.state;
 
 import static org.mockito.Mockito.*;
 
+import com.rossmoug.cast_on_core.state.gauge.Gauge;
+import com.rossmoug.cast_on_core.state.gauge.builder.GaugeBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.rossmoug.cast_on_core.state.Unit;
-import com.rossmoug.cast_on_core.state.gauge.IGauge;
-import com.rossmoug.cast_on_core.state.gauge.impl.Gauge;
-import com.rossmoug.cast_on_core.state.pattern.IPattern;
 import com.rossmoug.cast_on_core.state.pattern.builder.PatternBuilder;
-import com.rossmoug.cast_on_core.state.pattern.impl.Pattern;
+import com.rossmoug.cast_on_core.state.pattern.Pattern;
 
 import junitx.extensions.EqualsHashCodeTestCase;
 
@@ -32,12 +30,12 @@ public class PatternTest extends EqualsHashCodeTestCase {
 	 * 
 	 */
 	public void validPatternTest() {
-		IGauge patternGauge = mock(Gauge.class);
-		when(patternGauge.getRowCount()).thenReturn(30);
-		when(patternGauge.getStitchCount()).thenReturn(20);
+		final Gauge patternGauge = mock(Gauge.class);
+		when(patternGauge.getRowCount()).thenReturn((long) 30);
+		when(patternGauge.getStitchCount()).thenReturn((long) 20);
 		when(patternGauge.getUnit()).thenReturn(Unit.INCHES);
 
-		IPattern pattern = new PatternBuilder().gauge(patternGauge).dimension(4).build();
+		final Pattern pattern = new PatternBuilder().gauge(patternGauge).dimension(4).build();
 
 		Assert.assertNotNull("Pattern gauge is not null", pattern.getGauge());
 		Assert.assertEquals(4, pattern.getDimension(), 0);
@@ -45,11 +43,17 @@ public class PatternTest extends EqualsHashCodeTestCase {
 
 	@Override
 	protected Object createInstance() throws Exception {
-		return new PatternBuilder().dimension(1).gauge(new Gauge(1, 1, Unit.CM)).build();
+		final GaugeBuilder gaugeBuilder = new GaugeBuilder().rowCount(1).stitchCount(1).unit(Unit.CM);
+		final PatternBuilder patternBuilder = new PatternBuilder().dimension(1).gauge(gaugeBuilder.build());
+
+		return patternBuilder.build();
 	}
 
 	@Override
 	protected Object createNotEqualInstance() throws Exception {
-		return new PatternBuilder().dimension(2).gauge(new Gauge(2, 2, Unit.INCHES)).build();
+		final GaugeBuilder gaugeBuilder = new GaugeBuilder().rowCount(2).stitchCount(2).unit(Unit.INCHES);
+		final PatternBuilder patternBuilder = new PatternBuilder().dimension(2).gauge(gaugeBuilder.build());
+
+		return patternBuilder.build();
 	}
 }

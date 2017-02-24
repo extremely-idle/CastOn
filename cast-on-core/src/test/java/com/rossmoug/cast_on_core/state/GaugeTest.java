@@ -1,5 +1,6 @@
 package com.rossmoug.cast_on_core.state;
 
+import com.rossmoug.cast_on_core.state.gauge.builder.GaugeBuilder;
 import org.junit.Assert;
 
 import org.junit.Rule;
@@ -8,8 +9,7 @@ import org.junit.rules.ExpectedException;
 
 import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.cast_on_core.state.Unit;
-import com.rossmoug.cast_on_core.state.gauge.IGauge;
-import com.rossmoug.cast_on_core.state.gauge.impl.Gauge;
+import com.rossmoug.cast_on_core.state.gauge.Gauge;
 
 import junitx.extensions.EqualsHashCodeTestCase;
 
@@ -23,7 +23,7 @@ import junitx.extensions.EqualsHashCodeTestCase;
 public class GaugeTest extends EqualsHashCodeTestCase {
 
 	public GaugeTest(String name) {
-		super(name);
+	    super(name);
 	}
 
 	@Rule
@@ -34,9 +34,11 @@ public class GaugeTest extends EqualsHashCodeTestCase {
 	 * 
 	 */
 	public void validGaugeTest(){
-		IGauge knittingGauge;
+		Gauge knittingGauge;
 		try {
-			knittingGauge = new Gauge(1, 1, Unit.INCHES);
+			final GaugeBuilder gaugeBuilder = new GaugeBuilder();
+
+			knittingGauge = gaugeBuilder.rowCount(1).stitchCount(1).unit(Unit.INCHES).build();
 
 			Assert.assertEquals(1, knittingGauge.getRowCount());
 			Assert.assertEquals(1, knittingGauge.getStitchCount());
@@ -51,8 +53,10 @@ public class GaugeTest extends EqualsHashCodeTestCase {
 	 * 
 	 * @throws InvalidArgumentException
 	 */
-	public void invalidCountTest() throws InvalidConversionArgumentException{
-		IGauge knittingGauge = new Gauge(0, 0, Unit.INCHES);
+	public void invalidCountTest() {
+		final GaugeBuilder gaugeBuilder = new GaugeBuilder();
+
+		final Gauge knittingGauge = gaugeBuilder.rowCount(0).stitchCount(0).unit(Unit.INCHES).build();
 
 		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage("Row and stitch count can not be zero or negative.");
@@ -63,8 +67,10 @@ public class GaugeTest extends EqualsHashCodeTestCase {
 	 * 
 	 * @throws InvalidArgumentException
 	 */
-	public void invalidUnitTest() throws InvalidConversionArgumentException{
-		IGauge knittingGauge = new Gauge(0, 0, null);
+	public void invalidUnitTest() {
+		final GaugeBuilder gaugeBuilder = new GaugeBuilder();
+
+		final Gauge knittingGauge = gaugeBuilder.rowCount(0).stitchCount(0).unit(null).build();
 
 		thrown.expect(InvalidConversionArgumentException.class);
 		thrown.expectMessage("Unit must be provided.");
@@ -72,11 +78,19 @@ public class GaugeTest extends EqualsHashCodeTestCase {
 
 	@Override
 	protected Object createInstance() throws Exception {
-		return new Gauge(1, 1, Unit.INCHES);
+		final GaugeBuilder gaugeBuilder = new GaugeBuilder();
+
+		final Gauge guage = gaugeBuilder.rowCount(1).stitchCount(1).unit(Unit.INCHES).build();
+
+		return guage;
 	}
 
 	@Override
 	protected Object createNotEqualInstance() throws Exception {
-		return new Gauge(2, 2, Unit.INCHES);
+		final GaugeBuilder gaugeBuilder = new GaugeBuilder();
+
+		final Gauge guage = gaugeBuilder.rowCount(2).stitchCount(2).unit(Unit.CM).build();
+
+		return guage;
 	}
 }

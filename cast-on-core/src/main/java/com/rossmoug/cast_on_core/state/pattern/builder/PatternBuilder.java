@@ -1,7 +1,8 @@
 package com.rossmoug.cast_on_core.state.pattern.builder;
 
-import com.rossmoug.cast_on_core.state.gauge.IGauge;
-import com.rossmoug.cast_on_core.state.pattern.impl.Pattern;
+import com.rossmoug.cast_on_core.state.gauge.Gauge;
+import com.rossmoug.cast_on_core.state.pattern.Pattern;
+import com.rossmoug.cast_on_core.util.Builder;
 
 /**
  * Builder for Pattern objects.
@@ -10,9 +11,9 @@ import com.rossmoug.cast_on_core.state.pattern.impl.Pattern;
  * @version 1.0
  * @see Pattern
  */
-public class PatternBuilder {
+public class PatternBuilder implements Builder<Pattern> {
 
-	public IGauge gauge;
+	public Gauge gauge;
 	public double dimension;
 
 	/**
@@ -20,7 +21,7 @@ public class PatternBuilder {
 	 * @param gauge
 	 * @return
 	 */
-	public PatternBuilder gauge(IGauge gauge) {
+	public PatternBuilder gauge(final Gauge gauge) {
 		this.gauge = gauge;
 		return this;
 	}
@@ -30,7 +31,7 @@ public class PatternBuilder {
 	 * @param dimension
 	 * @return
 	 */
-	public PatternBuilder dimension(double dimension) {
+	public PatternBuilder dimension(final double dimension) {
 		this.dimension = dimension;
 		return this;
 	}

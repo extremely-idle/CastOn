@@ -6,17 +6,13 @@ import static org.mockito.Mockito.when;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.rossmoug.cast_on_core.command.Command;
 import com.rossmoug.cast_on_core.command.impl.ConvertPatternCommand;
-import com.rossmoug.cast_on_core.convert.IPatternConverter;
+import com.rossmoug.cast_on_core.convert.PatternConverter;
 import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
-import com.rossmoug.cast_on_core.convert.impl.PatternConverter;
 import com.rossmoug.cast_on_core.state.Unit;
-import com.rossmoug.cast_on_core.state.gauge.IGauge;
-import com.rossmoug.cast_on_core.state.gauge.impl.Gauge;
-import com.rossmoug.cast_on_core.state.pattern.IPattern;
+import com.rossmoug.cast_on_core.state.gauge.Gauge;
+import com.rossmoug.cast_on_core.state.pattern.Pattern;
 import com.rossmoug.cast_on_core.state.pattern.builder.PatternBuilder;
-import com.rossmoug.cast_on_core.state.pattern.impl.Pattern;
 
 /**
  * 
@@ -32,28 +28,35 @@ public class ConvertPatternCommandTest {
 	 */
 	public void happyPathTest() throws InvalidConversionArgumentException{
 		// given:
-		IGauge userGauge = mock(Gauge.class);
-		when(userGauge.getRowCount()).thenReturn(10);
-		when(userGauge.getStitchCount()).thenReturn(10);
+		final Gauge userGauge = mock(Gauge.class);
+		when(userGauge.getRowCount()).thenReturn((long) 10);
+		when(userGauge.getStitchCount()).thenReturn((long) 10);
 		when(userGauge.getUnit()).thenReturn(Unit.INCHES);
 
-		IGauge patternGauge = mock(Gauge.class);
-		when(patternGauge.getRowCount()).thenReturn(30);
-		when(patternGauge.getStitchCount()).thenReturn(20);
+		Gauge patternGauge = mock(Gauge.class);
+		when(patternGauge.getRowCount()).thenReturn((long) 30);
+		when(patternGauge.getStitchCount()).thenReturn((long) 20);
 		when(patternGauge.getUnit()).thenReturn(Unit.INCHES);
 
-		IPattern pattern = mock(Pattern.class);
+		final Pattern pattern = mock(Pattern.class);
 		when(pattern.getGauge()).thenReturn(patternGauge);
 		when(pattern.getDimension()).thenReturn(4.0);
-		
-		IPattern result = new PatternBuilder().dimension(pattern.getDimension()).gauge(new Gauge(3, 5, userGauge.getUnit())).build();
 
-		IPatternConverter converter = mock(PatternConverter.class);
+		final Gauge resultGauge = mock(Gauge.class);
+		when(resultGauge.getRowCount()).thenReturn((long) 3);
+		when(resultGauge.getStitchCount()).thenReturn((long) 5);
+		when(resultGauge.getUnit()).thenReturn(Unit.INCHES);
+
+		final Pattern result = mock(Pattern.class);
+		when(result.getDimension()).thenReturn(4.0);
+		when(result.getGauge()).thenReturn(resultGauge);
+
+		final PatternConverter converter = mock(PatternConverter.class);
 		when(converter.convertPattern(pattern, userGauge)).thenReturn(result);
 		
 		// when:
-		Command<IPattern> command = new ConvertPatternCommand<IPattern>(pattern, userGauge);
-		IPattern convertedPattern = command.execute();
+		final Command<Pattern> command = new ConvertPatternCommand<Pattern>(pattern, userGauge);
+		final Pattern convertedPattern = command.execute();
 
 		// then:
 		Assert.assertEquals(3.0, convertedPattern.getGauge().getRowCount(), 0.01);

@@ -2,9 +2,9 @@ package com.rossmoug.cast_on_core.command.impl;
 
 import com.rossmoug.cast_on_core.command.Command;
 import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
-import com.rossmoug.cast_on_core.convert.impl.PatternConverter;
-import com.rossmoug.cast_on_core.state.gauge.IGauge;
-import com.rossmoug.cast_on_core.state.pattern.IPattern;
+import com.rossmoug.cast_on_core.convert.impl.PatternConverterImpl;
+import com.rossmoug.cast_on_core.state.gauge.Gauge;
+import com.rossmoug.cast_on_core.state.pattern.Pattern;
 
 /**
  * 
@@ -15,19 +15,22 @@ import com.rossmoug.cast_on_core.state.pattern.IPattern;
  */
 public class ConvertPatternCommand<E> extends Command<E> {
 
-	private IPattern pattern;
-	private IGauge gauge;
+	private Pattern pattern;
+	private Gauge gauge;
 
-	public ConvertPatternCommand(final IPattern pattern, final IGauge gauge){
+	public ConvertPatternCommand(final Pattern pattern, final Gauge gauge){
 		this.pattern = pattern;
 		this.gauge = gauge;
 	}
 	
 	@Override
+	/**
+	 *
+	 */
 	public E execute() {
-		IPattern convertedPattern = null;
+		Pattern convertedPattern = null;
 		try {
-			 convertedPattern= PatternConverter.getInstance().convertPattern(pattern, gauge);
+			 convertedPattern= PatternConverterImpl.getInstance().convertPattern(pattern, gauge);
 		} catch (InvalidConversionArgumentException e) {
 			System.err.println("Invalid argument given for pattern conversion: " + e.getMessage());
 		}
