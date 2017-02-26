@@ -17,29 +17,33 @@ public class PatternBuilder implements Builder<Pattern> {
 	public double dimension;
 
 	/**
-	 * 
-	 * @param gauge
-	 * @return
+	 * Set the withGauge for the new pattern and return the builder.
+	 *
+	 * @param gauge the withGauge
+	 * @return the builder object
 	 */
-	public PatternBuilder gauge(final Gauge gauge) {
+	public PatternBuilder withGauge(final Gauge gauge) {
 		this.gauge = gauge;
 		return this;
 	}
 
 	/**
-	 * 
-	 * @param dimension
-	 * @return
+     * Set the withDimension for the new pattern and return the builder.
+     *
+     * @param dimension the withGauge
+     * @return the builder object
 	 */
-	public PatternBuilder dimension(final double dimension) {
+	public PatternBuilder withDimension(final double dimension) {
 		this.dimension = dimension;
 		return this;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
+    /**
+     * Create a new pattern object.
+     *
+     * @return the built pattern object
+     */
+    @Override
 	public Pattern build() {
 		return new Pattern(this);
 	}

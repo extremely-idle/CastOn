@@ -7,25 +7,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.rossmoug.cast_on_core.command.impl.ConvertPatternCommand;
-import com.rossmoug.cast_on_core.convert.PatternConverter;
+import com.rossmoug.cast_on_core.convert.pattern.PatternConverter;
 import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.cast_on_core.state.Unit;
 import com.rossmoug.cast_on_core.state.gauge.Gauge;
 import com.rossmoug.cast_on_core.state.pattern.Pattern;
-import com.rossmoug.cast_on_core.state.pattern.builder.PatternBuilder;
 
 /**
- * 
+ * Test cases for the {@link ConvertPatternCommand} class.
  *
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.0
+ * @version 1.1
  */
 public class ConvertPatternCommandTest {
 
 	@Test
-	/**
-	 * 
-	 */
 	public void happyPathTest() throws InvalidConversionArgumentException{
 		// given:
 		final Gauge userGauge = mock(Gauge.class);
@@ -55,7 +51,7 @@ public class ConvertPatternCommandTest {
 		when(converter.convertPattern(pattern, userGauge)).thenReturn(result);
 		
 		// when:
-		final Command<Pattern> command = new ConvertPatternCommand<Pattern>(pattern, userGauge);
+		final Command<Pattern> command = new ConvertPatternCommand(pattern, userGauge);
 		final Pattern convertedPattern = command.execute();
 
 		// then:

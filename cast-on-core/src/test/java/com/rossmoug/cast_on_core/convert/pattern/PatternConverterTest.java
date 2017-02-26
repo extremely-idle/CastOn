@@ -1,17 +1,17 @@
-package com.rossmoug.cast_on_core.convert;
+package com.rossmoug.cast_on_core.convert.pattern;
 
-import static org.mockito.Mockito.*;
-
-import com.rossmoug.cast_on_core.convert.impl.PatternConverterImpl;
+import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
+import com.rossmoug.cast_on_core.convert.pattern.impl.PatternConverterImpl;
+import com.rossmoug.cast_on_core.state.Unit;
+import com.rossmoug.cast_on_core.state.gauge.Gauge;
+import com.rossmoug.cast_on_core.state.pattern.Pattern;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentException;
-import com.rossmoug.cast_on_core.state.Unit;
-import com.rossmoug.cast_on_core.state.gauge.Gauge;
-import com.rossmoug.cast_on_core.state.pattern.Pattern;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Test cases for pattern conversion.
@@ -26,9 +26,6 @@ public class PatternConverterTest {
 	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
-	/**
-	 * 
-	 */
 	public void converterTest() throws InvalidConversionArgumentException {
 		// given:
 		final Gauge userGauge = mock(Gauge.class);
@@ -53,5 +50,4 @@ public class PatternConverterTest {
 		Assert.assertEquals(3.0, convertedPattern.getGauge().getRowCount(), 0.01);
 		Assert.assertEquals(5.0, convertedPattern.getGauge().getStitchCount(), 0.01);
 	}
-
 }

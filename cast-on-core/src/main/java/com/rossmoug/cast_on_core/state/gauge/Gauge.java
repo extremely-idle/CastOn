@@ -4,29 +4,26 @@ import com.rossmoug.cast_on_core.convert.exception.InvalidConversionArgumentExce
 import com.rossmoug.cast_on_core.state.Unit;
 import com.rossmoug.cast_on_core.state.gauge.builder.GaugeBuilder;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
+ * A representation of a knitting withGauge.
+ *
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.1
+ * @version 1.2
  */
 public class Gauge implements Comparable<Gauge> {
 
-    /**
-     *
-     */
     private static final float POSITIVE_VALUE = 1.0f;
 
     private long rowCount;
     private long stitchCount;
     private Unit unit;
 
-    public Gauge() {
-    }
-
     public Gauge(final GaugeBuilder builder) throws InvalidConversionArgumentException {
-        if (Math.signum(builder.rowCount) != POSITIVE_VALUE || Math.signum(builder.stitchCount) != POSITIVE_VALUE) {
-            throw new InvalidConversionArgumentException("Row and stitch count can not be zero or negative.");
+        if (BigDecimal.valueOf(Math.signum(builder.rowCount)).equals(BigDecimal.ONE) || !BigDecimal.valueOf(Math.signum(builder.stitchCount)).equals(BigDecimal.ONE)) {
+            throw new InvalidConversionArgumentException("RowConverter and stitch count can not be zero or negative.");
         } else if (builder.unit == null) {
             throw new InvalidConversionArgumentException("Unit must be provided.");
         }
@@ -36,23 +33,14 @@ public class Gauge implements Comparable<Gauge> {
         this.unit = builder.unit;
     }
 
-    /**
-     * @return
-     */
     public long getRowCount() {
         return rowCount;
     }
 
-    /**
-     * @return
-     */
     public long getStitchCount() {
         return stitchCount;
     }
 
-    /**
-     * @return
-     */
     public Unit getUnit() {
         return unit;
     }
@@ -93,7 +81,12 @@ public class Gauge implements Comparable<Gauge> {
                 && Objects.equals(this.unit, other.unit);
     }
 
+    @Override
     public int compareTo(Gauge o) {
-        return 0;
+        if (this.equals(o)) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

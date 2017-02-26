@@ -6,10 +6,10 @@ import com.rossmoug.cast_on_core.state.gauge.Gauge;
 import com.rossmoug.cast_on_core.state.pattern.builder.PatternBuilder;
 
 /**
- * 
+ * A representation of a knitting pattern
  *
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.1
+ * @version 1.2
  */
 public class Pattern implements Comparable<Pattern> {
 
