@@ -5,7 +5,10 @@ import com.rossmoug.caston.core.convert.pattern.impl.PatternConverterImpl;
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,13 +20,18 @@ import static org.mockito.Mockito.when;
  * Test cases for pattern conversion.
  * 
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.2
+ * @version 1.3
  * @see PatternConverter
  */
 public class PatternConverterTest {
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
+
+	@BeforeClass
+	public static void setupTest(){
+		Logger.getRootLogger().setLevel(Level.TRACE);
+	}
 
 	@Test
 	public void converterTest() throws InvalidConversionArgumentException {

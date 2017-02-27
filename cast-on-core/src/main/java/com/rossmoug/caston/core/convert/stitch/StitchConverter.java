@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
  * @version 1.0
  */
 public class StitchConverter extends Converter {
+
     private static final Logger LOGGER = Logger.getLogger(StitchConverter.class);
 
     /**
@@ -30,5 +31,17 @@ public class StitchConverter extends Converter {
         }
 
         return gauge.getStitchCount() / dimension;
+    }
+
+    /**
+     * Retrieves the number of stitches in the gauge.
+     *
+     * @param gauge
+     *         the gauge used in the calculation
+     * @return the number of stitches in the gauge
+     */
+    @Override
+    protected long retrieveGaugeElementCount(final Gauge gauge) {
+        return gauge.getStitchCount();
     }
 }

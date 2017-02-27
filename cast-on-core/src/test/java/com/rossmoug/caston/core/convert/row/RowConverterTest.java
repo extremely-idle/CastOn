@@ -3,7 +3,10 @@ package com.rossmoug.caston.core.convert.row;
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -13,27 +16,32 @@ import static org.mockito.Mockito.when;
  * Test cases for the {@link RowConverter} class. This test class will ensure that row conversion works as expected.
  *
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.0
+ * @version 1.1
  * @see RowConverter
  */
 public class RowConverterTest {
+
+    @BeforeClass
+    public static void setupTest(){
+        Logger.getRootLogger().setLevel(Level.TRACE);
+    }
 
     @Test
     public void rowsPerUnitTest() {
         // given:
         final Gauge patternGauge = mock(Gauge.class);
-        when(patternGauge.getRowCount()).thenReturn((long) 30);
+        when(patternGauge.getRowCount()).thenReturn((long) 40);
         when(patternGauge.getStitchCount()).thenReturn((long) 20);
         when(patternGauge.getUnit()).thenReturn(Unit.INCHES);
 
         final Gauge gauge = mock(Gauge.class);
-        when(gauge.getRowCount()).thenReturn((long) 10);
-        when(gauge.getStitchCount()).thenReturn((long) 10);
+        when(gauge.getRowCount()).thenReturn((long) 15);
+        when(gauge.getStitchCount()).thenReturn((long) 15);
         when(gauge.getUnit()).thenReturn(Unit.INCHES);
 
         final Pattern pattern = mock(Pattern.class);
         when(pattern.getGauge()).thenReturn(patternGauge);
-        when(pattern.getDimension()).thenReturn(4.0);
+        when(pattern.getDimension()).thenReturn(6.0);
 
         final RowConverter rowConverter = new RowConverter();
         rowConverter.setBasePattern(pattern);
@@ -51,18 +59,18 @@ public class RowConverterTest {
     public void rowConversionFactorCalculationTest() {
         // given:
         final Gauge patternGauge = mock(Gauge.class);
-        when(patternGauge.getRowCount()).thenReturn((long) 30);
-        when(patternGauge.getStitchCount()).thenReturn((long) 20);
+        when(patternGauge.getRowCount()).thenReturn((long) 50);
+        when(patternGauge.getStitchCount()).thenReturn((long) 15);
         when(patternGauge.getUnit()).thenReturn(Unit.INCHES);
 
         final Gauge gauge = mock(Gauge.class);
-        when(gauge.getRowCount()).thenReturn((long) 10);
-        when(gauge.getStitchCount()).thenReturn((long) 10);
+        when(gauge.getRowCount()).thenReturn((long) 20);
+        when(gauge.getStitchCount()).thenReturn((long) 20);
         when(gauge.getUnit()).thenReturn(Unit.INCHES);
 
         final Pattern pattern = mock(Pattern.class);
         when(pattern.getGauge()).thenReturn(patternGauge);
-        when(pattern.getDimension()).thenReturn(4.0);
+        when(pattern.getDimension()).thenReturn(5.0);
 
         final RowConverter rowConverter = new RowConverter();
         rowConverter.setBasePattern(pattern);
@@ -73,25 +81,25 @@ public class RowConverterTest {
 
         // then:
         Assert.assertNotNull(rowConversionFactor);
-        Assert.assertEquals(0.33, rowConversionFactor, 0.01);
+        Assert.assertEquals(0.4, rowConversionFactor, 0.01);
     }
 
     @Test
     public void rowConversionTest() {
         // given:
         final Gauge patternGauge = mock(Gauge.class);
-        when(patternGauge.getRowCount()).thenReturn((long) 30);
-        when(patternGauge.getStitchCount()).thenReturn((long) 20);
+        when(patternGauge.getRowCount()).thenReturn((long) 100);
+        when(patternGauge.getStitchCount()).thenReturn((long) 35);
         when(patternGauge.getUnit()).thenReturn(Unit.INCHES);
 
         final Gauge gauge = mock(Gauge.class);
-        when(gauge.getRowCount()).thenReturn((long) 10);
-        when(gauge.getStitchCount()).thenReturn((long) 10);
+        when(gauge.getRowCount()).thenReturn((long) 40);
+        when(gauge.getStitchCount()).thenReturn((long) 35);
         when(gauge.getUnit()).thenReturn(Unit.INCHES);
 
         final Pattern pattern = mock(Pattern.class);
         when(pattern.getGauge()).thenReturn(patternGauge);
-        when(pattern.getDimension()).thenReturn(4.0);
+        when(pattern.getDimension()).thenReturn(7.0);
 
         final RowConverter rowConverter = new RowConverter();
         rowConverter.setBasePattern(pattern);
@@ -102,6 +110,6 @@ public class RowConverterTest {
 
         // then:
         Assert.assertNotNull(convertedRowCount);
-        Assert.assertEquals(3.0, convertedRowCount, 0.01);
+        Assert.assertEquals(16.0, convertedRowCount, 0.01);
     }
 }

@@ -32,4 +32,16 @@ public class RowConverter extends Converter {
 
         return gauge.getRowCount() / dimension;
     }
+
+    /**
+     * Retrieves the number of rows in the gauge.
+     *
+     * @param gauge
+     *         the gauge used in the calculation
+     * @return the number of rows in the gauge
+     */
+    @Override
+    protected long retrieveGaugeElementCount(final Gauge gauge) {
+        return gauge.getRowCount();
+    }
 }

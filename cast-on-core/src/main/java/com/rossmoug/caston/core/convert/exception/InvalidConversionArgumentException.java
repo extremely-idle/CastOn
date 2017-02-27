@@ -14,4 +14,8 @@ public class InvalidConversionArgumentException extends RuntimeException {
         super(string);
     }
 
+    public InvalidConversionArgumentException(String string, Throwable cause) {
+        super(string, cause);
+    }
+
 }

@@ -4,7 +4,6 @@ import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
 
 import org.apache.log4j.Logger;
-import java.lang.Math;
 
 /**
  * A representation of a converter which is used during pattern conversion.
@@ -33,11 +32,11 @@ public abstract class Converter {
         }
 
         final double conversionFactor = calculateElementConversionFactor(basePattern, gauge);
-        final long baseNumberOfOccurrences = gauge.getRowCount();
-        final long convertedElementCount = Math.round(baseNumberOfOccurrences * conversionFactor);
+        final long numberOfElementOccurrencesInGauge = retrieveGaugeElementCount(gauge);
+        final long convertedElementCount = Math.round(numberOfElementOccurrencesInGauge * conversionFactor);
 
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("convertedRows => " + convertedElementCount);
+            LOGGER.debug("convert => " + convertedElementCount);
         }
 
         return convertedElementCount;
@@ -49,19 +48,19 @@ public abstract class Converter {
      * @param pattern
      *         the pattern to be converted
      * @param gauge
-     *         the withGauge that is to be used to convert the pattern
+     *         the gauge that is to be used to convert the pattern
      * @return the row conversion factor
      */
     public final double calculateElementConversionFactor(final Pattern pattern, final Gauge gauge) {
         if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("calculateElementConversionFactor(\n" + "  pattern => " + pattern + "\nwithGauge => " + gauge + ")");
+            LOGGER.trace("calculateElementConversionFactor(\n" + "  pattern => " + pattern + "\ngauge => " + gauge + ")");
         }
 
         final double patternRowCountPerUnit = calculateElementPerUnit(pattern.getGauge(), pattern.getDimension());
         final double gaugeRowCountPerUnit = calculateElementPerUnit(gauge, pattern.getDimension());
 
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("rows/withUnit pattern => " + patternRowCountPerUnit + ", rows/withUnit user => " + gaugeRowCountPerUnit);
+            LOGGER.debug("rows/unit pattern => " + patternRowCountPerUnit + ", rows/unit user => " + gaugeRowCountPerUnit);
         }
 
         return gaugeRowCountPerUnit / patternRowCountPerUnit;
@@ -74,9 +73,18 @@ public abstract class Converter {
      *         the withGauge used in the calculation
      * @param dimension
      *         the size of the swatch
-     * @return the number of elements per withUnit
+     * @return the number of elements per unit
      */
     protected abstract double calculateElementPerUnit(final Gauge gauge, final double dimension);
+
+    /**
+     * Retrieves the number of elements in the gauge.
+     *
+     * @param gauge
+     *         the gauge used in the calculation
+     * @return the number of elements in the gauge
+     */
+    protected abstract long retrieveGaugeElementCount(final Gauge gauge);
 
     public final void setBasePattern(Pattern basePattern) {
         this.basePattern = basePattern;

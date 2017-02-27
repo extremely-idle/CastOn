@@ -6,7 +6,10 @@ import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
 import com.rossmoug.caston.core.util.Converter;
 import com.rossmoug.caston.core.util.ConverterFactory;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -16,10 +19,15 @@ import static org.mockito.Mockito.when;
  * Test cases for the {@link RowConverterFactory} class.
  *
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.0
+ * @version 1.1
  * @see RowConverterFactory
  */
 public class RowConverterFactoryTest {
+
+    @BeforeClass
+    public static void setupTest(){
+        Logger.getRootLogger().setLevel(Level.TRACE);
+    }
 
     @Test
     public void createValidRowConverterTest(){

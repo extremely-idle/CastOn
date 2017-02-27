@@ -5,7 +5,10 @@ import static org.mockito.Mockito.*;
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.gauge.builder.GaugeBuilder;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.rossmoug.caston.core.state.pattern.builder.PatternBuilder;
@@ -16,13 +19,18 @@ import junitx.extensions.EqualsHashCodeTestCase;
  * Test cases to ensure that {@link Pattern} objects can be generated consistently.
  * 
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.2
+ * @version 1.3
  * @see Pattern
  */
 public class PatternTest extends EqualsHashCodeTestCase {
 
 	public PatternTest(String name) {
 		super(name);
+	}
+
+	@BeforeClass
+	public static void setupTest(){
+		Logger.getRootLogger().setLevel(Level.TRACE);
 	}
 
 	@Test
@@ -34,7 +42,8 @@ public class PatternTest extends EqualsHashCodeTestCase {
 
 		final Pattern pattern = new PatternBuilder().withGauge(patternGauge).withDimension(4).build();
 
-		Assert.assertNotNull("Pattern withGauge is not null", pattern.getGauge());
+		Assert.assertNotNull("Pattern gauge is not null", pattern.getGauge());
+		Assert.assertEquals(patternGauge, pattern.getGauge());
 		Assert.assertEquals(4, pattern.getDimension(), 0);
 	}
 

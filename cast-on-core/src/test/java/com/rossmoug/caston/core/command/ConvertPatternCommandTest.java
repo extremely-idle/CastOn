@@ -6,7 +6,11 @@ import static org.mockito.Mockito.when;
 import com.rossmoug.caston.core.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.pattern.Pattern;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.rossmoug.caston.core.command.impl.ConvertPatternCommand;
@@ -17,9 +21,14 @@ import com.rossmoug.caston.core.state.gauge.Gauge;
  * Test cases for the {@link ConvertPatternCommand} class.
  *
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.1
+ * @version 1.2
  */
 public class ConvertPatternCommandTest {
+
+	@BeforeClass
+	public static void setupTest(){
+        Logger.getRootLogger().setLevel(Level.TRACE);
+	}
 
 	@Test
 	public void happyPathTest() throws InvalidConversionArgumentException {
