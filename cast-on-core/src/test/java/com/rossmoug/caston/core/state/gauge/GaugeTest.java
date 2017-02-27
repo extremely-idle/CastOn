@@ -65,7 +65,6 @@ public class GaugeTest extends EqualsHashCodeTestCase {
                           .hasNoCause();
     }
 
-    @Test(expected = InvalidConversionArgumentException.class)
     public void invalidUnitTest() {
         final GaugeBuilder gaugeBuilder = new GaugeBuilder().withRowCount(0)
                                                             .withStitchCount(0)

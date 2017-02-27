@@ -7,15 +7,13 @@ import org.junit.Assert;
  * Test class to assist with the testing of throwables, this provides various assertions for attributes of a throwable.
  * <p>
  * <b>Note</b> - this was <b><u>not</u></b> created as a part of this project, all credit for this class go to Rafal
- * Borowiec.
- *
- * @see <a href = https://github.com/kolorobot/unit-testing-demo>Unit Testing Demo on GitHub</a>
+ * Borowiec. Please see https://github.com/kolorobot/unit-testing-demo for more information.
  */
 public class ThrowableAssertion {
 
     private final Throwable caught;
 
-    public ThrowableAssertion(Throwable caught) {
+    private ThrowableAssertion(Throwable caught) {
         this.caught = caught;
     }
 
@@ -38,6 +36,7 @@ public class ThrowableAssertion {
         return this;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public ThrowableAssertion hasNoCause() {
         Assert.assertThat(caught.getCause(), Matchers.nullValue());
         return this;

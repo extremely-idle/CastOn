@@ -18,7 +18,7 @@ public final class MathUtil {
      *         the numeric value that the signum method must be performed on
      * @return a BigDecimal value containing the output of the signum method
      */
-    public static final BigDecimal sign(double value) {
+    public static BigDecimal sign(double value) {
         final BigDecimal sign = BigDecimal.valueOf(Math.signum(value)).stripTrailingZeros();
 
         return sign;
