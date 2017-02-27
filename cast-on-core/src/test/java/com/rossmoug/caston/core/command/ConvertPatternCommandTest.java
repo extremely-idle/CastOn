@@ -9,7 +9,6 @@ import com.rossmoug.caston.core.state.pattern.Pattern;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
