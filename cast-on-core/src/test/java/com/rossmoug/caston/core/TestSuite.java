@@ -2,10 +2,10 @@ package com.rossmoug.caston.core;
 
 import com.rossmoug.caston.core.command.ConvertPatternCommandTest;
 import com.rossmoug.caston.core.convert.pattern.PatternConverterTest;
-import com.rossmoug.caston.core.convert.row.RowConverterTest;
-import com.rossmoug.caston.core.convert.row.factory.RowConverterFactoryTest;
-import com.rossmoug.caston.core.convert.stitch.StitchConverterTest;
-import com.rossmoug.caston.core.convert.stitch.factory.StitchConverterFactoryTest;
+import com.rossmoug.caston.core.convert.converter.row.RowConverterTest;
+import com.rossmoug.caston.core.convert.converter.row.factory.RowConverterFactoryTest;
+import com.rossmoug.caston.core.convert.converter.stitch.StitchConverterTest;
+import com.rossmoug.caston.core.convert.converter.stitch.factory.StitchConverterFactoryTest;
 import com.rossmoug.caston.core.state.gauge.GaugeTest;
 import com.rossmoug.caston.core.state.pattern.PatternTest;
 import org.junit.runner.RunWith;

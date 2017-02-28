@@ -5,10 +5,10 @@ import com.rossmoug.caston.core.util.Builder;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 
 /**
- * Builder for Gauge objects.
+ * Builder for {@link Gauge} objects.
  *
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.1
+ * @version 1.2
  * @see Gauge
  */
 public class GaugeBuilder implements Builder<Gauge> {
@@ -18,7 +18,7 @@ public class GaugeBuilder implements Builder<Gauge> {
     public Unit unit;
 
     /**
-     * Set the number of rows for the new withGauge and return the builder.
+     * Set the number of rows for the new gauge and return the builder.
      *
      * @param rowCount the number of rows
      * @return the builder object
@@ -29,7 +29,7 @@ public class GaugeBuilder implements Builder<Gauge> {
     }
 
     /**
-     * Set the number of stitch for the new withGauge and return the builder.
+     * Set the number of stitch for the new gauge and return the builder.
      *
      * @param stitchCount the number of rows
      * @return the builder object
@@ -39,9 +39,9 @@ public class GaugeBuilder implements Builder<Gauge> {
         return this;
     }
     /**
-     * Set the withUnit of measurement for the new withGauge and return the builder.
+     * Set the unit of measurement for the new gauge and return the builder.
      *
-     * @param unit the withUnit of measurement
+     * @param unit the unit of measurement
      * @return the builder object
      */
     public GaugeBuilder withUnit(final Unit unit) {

@@ -1,12 +1,12 @@
-package com.rossmoug.caston.core.convert.stitch.factory;
+package com.rossmoug.caston.core.convert.converter.stitch.factory;
 
-import com.rossmoug.caston.core.convert.stitch.StitchConverter;
+import com.rossmoug.caston.core.convert.converter.stitch.StitchConverter;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
-import com.rossmoug.caston.core.util.ConverterFactory;
+import com.rossmoug.caston.core.convert.converter.ConverterFactory;
 
 /**
- * A representation of a factory which is used to create stitch converter objects.
+ * A representation of a builder which is used to create stitch converter objects.
  *
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.0

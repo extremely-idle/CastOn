@@ -1,4 +1,4 @@
-package com.rossmoug.caston.core.convert.stitch;
+package com.rossmoug.caston.core.convert.converter.stitch;
 
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.gauge.Gauge;

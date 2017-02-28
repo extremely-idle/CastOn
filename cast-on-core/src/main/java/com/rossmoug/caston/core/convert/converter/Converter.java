@@ -1,4 +1,4 @@
-package com.rossmoug.caston.core.util;
+package com.rossmoug.caston.core.convert.converter;
 
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;

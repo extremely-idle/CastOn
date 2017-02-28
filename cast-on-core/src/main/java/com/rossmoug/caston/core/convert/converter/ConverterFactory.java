@@ -1,12 +1,13 @@
-package com.rossmoug.caston.core.util;
+package com.rossmoug.caston.core.convert.converter;
 
+import com.rossmoug.caston.core.convert.converter.Converter;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
 
 /**
- * A representation of a factory which is used during converter creation.
+ * A representation of a builder which is used during converter creation.
  *
- * <b>Note</b> - this interface allows implementing classes to follow the <i>factory</i> pattern.
+ * <b>Note</b> - this interface allows implementing classes to follow the <i>builder</i> pattern.
  *
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.0

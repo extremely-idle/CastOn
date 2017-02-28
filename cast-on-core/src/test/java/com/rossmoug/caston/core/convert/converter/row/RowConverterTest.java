@@ -1,4 +1,4 @@
-package com.rossmoug.caston.core.convert.row;
+package com.rossmoug.caston.core.convert.converter.row;
 
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.gauge.Gauge;

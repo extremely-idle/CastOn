@@ -1,7 +1,7 @@
-package com.rossmoug.caston.core.convert.row;
+package com.rossmoug.caston.core.convert.converter.row;
 
 import com.rossmoug.caston.core.state.gauge.Gauge;
-import com.rossmoug.caston.core.util.Converter;
+import com.rossmoug.caston.core.convert.converter.Converter;
 import org.apache.log4j.Logger;
 
 /**

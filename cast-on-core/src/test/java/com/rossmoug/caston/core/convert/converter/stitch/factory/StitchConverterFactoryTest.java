@@ -1,11 +1,11 @@
-package com.rossmoug.caston.core.convert.stitch.factory;
+package com.rossmoug.caston.core.convert.converter.stitch.factory;
 
-import com.rossmoug.caston.core.convert.stitch.StitchConverter;
+import com.rossmoug.caston.core.convert.converter.stitch.StitchConverter;
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
-import com.rossmoug.caston.core.util.Converter;
-import com.rossmoug.caston.core.util.ConverterFactory;
+import com.rossmoug.caston.core.convert.converter.Converter;
+import com.rossmoug.caston.core.convert.converter.ConverterFactory;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Assert;

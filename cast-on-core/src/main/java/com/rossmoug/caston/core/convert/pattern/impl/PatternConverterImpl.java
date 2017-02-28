@@ -2,15 +2,15 @@ package com.rossmoug.caston.core.convert.pattern.impl;
 
 import com.rossmoug.caston.core.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.caston.core.convert.pattern.PatternConverter;
-import com.rossmoug.caston.core.convert.row.RowConverter;
-import com.rossmoug.caston.core.convert.row.factory.RowConverterFactory;
-import com.rossmoug.caston.core.convert.stitch.StitchConverter;
-import com.rossmoug.caston.core.convert.stitch.factory.StitchConverterFactory;
+import com.rossmoug.caston.core.convert.converter.row.RowConverter;
+import com.rossmoug.caston.core.convert.converter.row.factory.RowConverterFactory;
+import com.rossmoug.caston.core.convert.converter.stitch.StitchConverter;
+import com.rossmoug.caston.core.convert.converter.stitch.factory.StitchConverterFactory;
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.gauge.builder.GaugeBuilder;
 import com.rossmoug.caston.core.state.pattern.Pattern;
 import com.rossmoug.caston.core.state.pattern.builder.PatternBuilder;
-import com.rossmoug.caston.core.util.ConverterFactory;
+import com.rossmoug.caston.core.convert.converter.ConverterFactory;
 import org.apache.log4j.Logger;
 
 /**

@@ -5,10 +5,10 @@ import com.rossmoug.caston.core.state.pattern.Pattern;
 import com.rossmoug.caston.core.util.Builder;
 
 /**
- * Builder for Pattern objects.
+ * Builder for {@link Pattern} objects.
  * 
  * @author Ross Moug (ross.moug@gmail.com)
- * @version 1.0
+ * @version 1.1
  * @see Pattern
  */
 public class PatternBuilder implements Builder<Pattern> {

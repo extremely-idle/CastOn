@@ -3,6 +3,7 @@ package com.rossmoug.caston.core.command;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.rossmoug.caston.core.command.impl.builder.ConvertPatternCommandBuilder;
 import com.rossmoug.caston.core.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.caston.core.state.Unit;
 import com.rossmoug.caston.core.state.pattern.Pattern;
@@ -57,9 +58,11 @@ public class ConvertPatternCommandTest {
 
 		final PatternConverter converter = mock(PatternConverter.class);
 		when(converter.convertPattern(pattern, userGauge)).thenReturn(result);
+
+		final ConvertPatternCommandBuilder builder = new ConvertPatternCommandBuilder();
 		
 		// when:
-		final Command<Pattern> command = new ConvertPatternCommand(pattern, userGauge);
+		final Command<Pattern> command = builder.withPattern(pattern).withGauge(userGauge).build();
 		final Pattern convertedPattern = command.execute();
 
 		// then:

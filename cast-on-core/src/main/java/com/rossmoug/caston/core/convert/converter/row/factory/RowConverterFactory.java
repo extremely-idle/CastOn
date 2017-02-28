@@ -1,12 +1,12 @@
-package com.rossmoug.caston.core.convert.row.factory;
+package com.rossmoug.caston.core.convert.converter.row.factory;
 
 import com.rossmoug.caston.core.state.gauge.Gauge;
 import com.rossmoug.caston.core.state.pattern.Pattern;
-import com.rossmoug.caston.core.convert.row.RowConverter;
-import com.rossmoug.caston.core.util.ConverterFactory;
+import com.rossmoug.caston.core.convert.converter.row.RowConverter;
+import com.rossmoug.caston.core.convert.converter.ConverterFactory;
 
 /**
- * A representation of a factory which is used to create row converter objects.
+ * A representation of a builder which is used to create row converter objects.
  *
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.0
