@@ -58,7 +58,7 @@ public class PatternConverterImpl implements PatternConverter {
      *         an exception is thrown if the conversion arguments are invalid
      */
     @Override
-    public Pattern convertPattern(final Pattern pattern, final Gauge gauge) throws InvalidConversionArgumentException {
+    public Pattern convertPattern(final Pattern pattern, final Gauge gauge) {
         if (LOGGER.isTraceEnabled()) {
             LOGGER.trace("convertPattern(\n" + "  factor => " + pattern + "\n" + " ,withStitchCount => " + gauge + "\n" + ")");
         }

@@ -36,12 +36,7 @@ public class ConvertPatternCommand extends Command<Pattern> {
      */
     @Override
     public Pattern execute() {
-        Pattern convertedPattern = null;
-        try {
-            convertedPattern = PatternConverterImpl.getInstance().convertPattern(pattern, gauge);
-        } catch (InvalidConversionArgumentException e) {
-            LOGGER.fatal("Invalid argument given for pattern conversion: " + e.getMessage());
-        }
+        final Pattern convertedPattern = PatternConverterImpl.getInstance().convertPattern(pattern, gauge);
 
         return convertedPattern;
     }
