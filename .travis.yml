@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - oraclejdk8
+
+script:
+  - cd cast-on-core && mvn test
+#  - cd ../android && gradle check
+
+after_success:
+  - pwd
+  - mvn clean test jacoco:report coveralls:report
