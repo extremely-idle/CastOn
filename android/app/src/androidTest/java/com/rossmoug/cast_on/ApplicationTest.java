@@ -1,4 +1,4 @@
-package net.rossmoug.cast_on;
+package com.rossmoug.cast_on;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
