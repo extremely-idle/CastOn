@@ -2,7 +2,6 @@ package com.rossmoug.caston.core.command.impl;
 
 import com.rossmoug.caston.core.command.Command;
 import com.rossmoug.caston.core.command.impl.builder.ConvertPatternCommandBuilder;
-import com.rossmoug.caston.core.convert.exception.InvalidConversionArgumentException;
 import com.rossmoug.caston.core.convert.pattern.PatternConverter;
 import com.rossmoug.caston.core.convert.pattern.impl.PatternConverterImpl;
 import com.rossmoug.caston.core.state.gauge.Gauge;

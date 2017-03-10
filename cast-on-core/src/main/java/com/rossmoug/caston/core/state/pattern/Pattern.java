@@ -1,5 +1,6 @@
 package com.rossmoug.caston.core.state.pattern;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.rossmoug.caston.core.state.gauge.Gauge;
@@ -11,7 +12,7 @@ import com.rossmoug.caston.core.state.pattern.builder.PatternBuilder;
  * @author Ross Moug (ross.moug@gmail.com)
  * @version 1.2
  */
-public class Pattern implements Comparable<Pattern> {
+public class Pattern implements Comparable<Pattern>, Serializable {
 
 	private final Gauge gauge;
 	private final double dimension;
