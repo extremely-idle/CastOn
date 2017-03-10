@@ -1,1 +1,42 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.6.3'
+    id 'maven-publish'
+}
+
+group 'com.rossmoug.cast-on-android'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    maven {
+        url 'C:\\Users\\Ross\\.m2\\repository' //TODO - replace with remote Maven repository
+    }
+}
+
+dependencies {
+    compile 'com.rossmoug.cast-on:cast-on-core:0.0.1-SNAPSHOT'
+}
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/jacoco/jacoco-ut.exec")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
