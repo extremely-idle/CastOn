@@ -2,9 +2,6 @@ language: java
 jdk:
   - oraclejdk8
 
-before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
-script: "mvn deploy --settings target/travis/settings.xml"
-
 env:
   global:
     - secure: "f6a3XG9YuKvXZS6ICK0HGai0XWBSuHe6/WUGpewugToFvFaLqJ2nAUyMfXTjF+AhW49QmocJ0/FH6CsEbvoj9Jr+niJroHs3W24/BjuPe26mNxQUI8NVhc5BM2H+Kgq4vv7eJfDnO72XG7q8/Cq61BTamAa4LVfGYMFDk/q6uDredb2qe41j+Q0MlacPsRSo+iXSSTOL3hySWLKRCPOlCWMOdcVilpvKMlWdSbfCzM28lL75+CaevnHz2uXjBeWzBIvDRm7Rudh6OFN+3aaBV3Y8HuBzO+YE5zerpRbamwqWnTdm5xSiwCLwtMoiWdQPuf2mpKFs/rrdc00kQoU6gsG6fg5l9AdxHW2SFyRryMXQ3YZvELZghLOdxf+/YojIOq2WfzYfzRpgsrTHgLxdEOFOK/Nu3qX2taJ4l6027c8YaENVi1dSuGTqew5FiZJ7e2aiMwEgF+M37hYuWlnBQaIWEytZ9bSQ8Zxodtji1/LwSk3ODFG/l0LIvTr/HY85y0HmxRYUEkWLHGCnIoPXvhY9DbqrFMIR2AQVq9ET1inV+JsYgYHznv+uMQ+0pI9w2Q+FLKNXGjzqHM/2itSLhL/t7/kT2e08l5gmMhC/k5DQC912HjGeXhWbsV/AcsBk0UJop/PHeiMW0JD+WTb6E40filUEoe9G80n7/rkGbi0="
@@ -14,19 +11,10 @@ sudo: false
 
 install: true
 
-addons:
-  sonarqube:
-    token:
-      secure: "kE+gvnDLfWokcdGeeC0+m+hBoeq2VRghV4dreypkGC6nsufZopfYxVwC5GsaW9pGBszlsurmv1aNrJaSuslJ1d2VUhcH+qJOjtUHDN7Uvz3Pxp4C93z+TdCR2szwADUKK95NT/7yHRIAU7Oj7sKrxL3XrDShQSVRxGuZJpiUf5eARgta8xJVso1bqp/S6mRs+pjwXXn9g3JYMdKlps3ieJHUY97WSe5ljA8MNGSqsNjEK6LGScUSQ0WQJs0NNldw9PbWOkyF2lMvx7jcNUB/d4heAtIh3pkuSiNxMoizPSEDHi8PobbDUe3NH5kstAhly0KlsaeY7SHl/lhMN9FlqJHqKjTEj5SNY57mfJ4wSIDDZtp7AeG8t/IvK0d5xux8D8mjG8KG0ha3+uKZlzm5Ci10rMQnIkPkLE+MFWUkoPJf6IABSvRcXSXypnD3LUPKcPpJugy4wqxlLokxME2A/phBWLrQB910rB4B6wfwlEokJLxD2smpHzmq/Zo39F9ofrc1vUP/cRqLvws2aLPxhVtMVqFjk3/IJZ5mHILSyH8a2KsaNRawJKkuM9tSAYyZpAKYZyeLrPi5STkQK+vLQVtlx/YsJ4jmeellca76GBrQXLPafjPOPROzMcVIvL5Nuj4F8ML46GS6EwzrXO/ODKnoJwlW0OxqBheqiwr6TN8="
-
 script:
-  - cd cast-on-core && mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package jacoco:report sonar:sonar coveralls:report
+  - cd cast-on-core && mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package jacoco:report coveralls:report
+  - mvn deploy --settings target/travis/settings.xml
  # - cd ../android && gradle clean check jacocoTestReport build
 
 after_success:
 #- cd cast-on-core/android && ./gradlew jacocoTestReport coveralls
-
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
