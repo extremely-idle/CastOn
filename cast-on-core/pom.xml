@@ -21,7 +21,7 @@
 		<repository>
 			<id>bintray-ross-moug-maven-repository</id>
 			<name>ross-moug-maven-repository</name>
-			<url>https://api.bintray.com/maven/ross-moug/maven-repository/cast-on-core/;publish=1</url>
+			<url>https://api.bintray.com/maven/ross-moug/maven-repository/cast-on-core/</url>
 		</repository>
 	</distributionManagement>
 
