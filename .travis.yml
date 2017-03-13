@@ -2,6 +2,9 @@ language: java
 jdk:
   - oraclejdk8
 
+before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
+script: "mvn deploy --settings target/travis/settings.xml"
+
 env:
   global:
     - secure: "f6a3XG9YuKvXZS6ICK0HGai0XWBSuHe6/WUGpewugToFvFaLqJ2nAUyMfXTjF+AhW49QmocJ0/FH6CsEbvoj9Jr+niJroHs3W24/BjuPe26mNxQUI8NVhc5BM2H+Kgq4vv7eJfDnO72XG7q8/Cq61BTamAa4LVfGYMFDk/q6uDredb2qe41j+Q0MlacPsRSo+iXSSTOL3hySWLKRCPOlCWMOdcVilpvKMlWdSbfCzM28lL75+CaevnHz2uXjBeWzBIvDRm7Rudh6OFN+3aaBV3Y8HuBzO+YE5zerpRbamwqWnTdm5xSiwCLwtMoiWdQPuf2mpKFs/rrdc00kQoU6gsG6fg5l9AdxHW2SFyRryMXQ3YZvELZghLOdxf+/YojIOq2WfzYfzRpgsrTHgLxdEOFOK/Nu3qX2taJ4l6027c8YaENVi1dSuGTqew5FiZJ7e2aiMwEgF+M37hYuWlnBQaIWEytZ9bSQ8Zxodtji1/LwSk3ODFG/l0LIvTr/HY85y0HmxRYUEkWLHGCnIoPXvhY9DbqrFMIR2AQVq9ET1inV+JsYgYHznv+uMQ+0pI9w2Q+FLKNXGjzqHM/2itSLhL/t7/kT2e08l5gmMhC/k5DQC912HjGeXhWbsV/AcsBk0UJop/PHeiMW0JD+WTb6E40filUEoe9G80n7/rkGbi0="
@@ -21,7 +24,7 @@ script:
  # - cd ../android && gradle clean check jacocoTestReport build
 
 after_success:
-- cd cast-on-core/android && ./gradlew jacocoTestReport coveralls
+#- cd cast-on-core/android && ./gradlew jacocoTestReport coveralls
 
 cache:
   directories:
