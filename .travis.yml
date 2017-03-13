@@ -12,9 +12,10 @@ sudo: false
 install: true
 
 script:
-  - cd cast-on-core && mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package jacoco:report coveralls:report
-  - mvn deploy --settings target/travis/settings.xml
+  - cd cast-on-core && mvn clean package deploy --settings settings.xml
  # - cd ../android && gradle clean check jacocoTestReport build
 
 after_success:
+  - pwd
+  - mvn clean test jacoco:report coveralls:report
 #- cd cast-on-core/android && ./gradlew jacocoTestReport coveralls
